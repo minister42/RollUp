@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RollUp - Digital Ad Designs</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: #1a1a1a;
+    color: #fff;
+    padding: 40px;
+  }
+
+  h1.page-title {
+    text-align: center;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: #888;
+    margin-bottom: 60px;
+  }
+
+  .ad-section {
+    margin-bottom: 80px;
+  }
+  .ad-label {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #666;
+    margin-bottom: 16px;
+    text-align: center;
+  }
+  .ad-container {
+    display: flex;
+    justify-content: center;
+  }
+
+  :root {
+    --orange: #FF6B1C;
+    --red: #E33835;
+    --charcoal: #2E2E33;
+    --cream: #FFF8EE;
+    --green: #38C773;
+    --dark: #1C1C1E;
+    --gradient: linear-gradient(135deg, #FF6B1C, #E33835);
+  }
+
+  /* AD 1: INSTAGRAM STORY / TIKTOK (1080x1920) */
+  .story-ad {
+    width: 360px;
+    height: 640px;
+    background: var(--gradient);
+    border-radius: 24px;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 40px 30px;
+  }
+  .story-ad .bg-pattern {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    opacity: 0.08;
+    background-image:
+      repeating-linear-gradient(45deg, transparent, transparent 20px, rgba(255,255,255,0.1) 20px, rgba(255,255,255,0.1) 22px);
+  }
+  .story-ad * { position: relative; z-index: 1; }
+  .story-ad .logo-area { text-align: center; }
+  .story-ad .truck-icon { font-size: 48px; margin-bottom: 8px; }
+  .story-ad .logo-text { font-size: 32px; font-weight: 900; letter-spacing: -1px; }
+  .story-ad .hero-content { text-align: center; }
+  .story-ad .hero-content h2 {
+    font-size: 36px; font-weight: 800; line-height: 1.1;
+    margin-bottom: 16px; text-shadow: 0 2px 20px rgba(0,0,0,0.2);
+  }
+  .story-ad .hero-content p { font-size: 16px; opacity: 0.9; line-height: 1.5; max-width: 280px; margin: 0 auto; }
+  .story-ad .food-emojis { font-size: 40px; letter-spacing: 8px; text-align: center; }
+  .story-ad .cta-area { text-align: center; width: 100%; }
+  .story-ad .cta-btn {
+    display: inline-block; background: #fff; color: var(--orange);
+    font-size: 18px; font-weight: 800; padding: 16px 48px;
+    border-radius: 50px; text-decoration: none;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.2); margin-bottom: 12px;
+  }
+  .story-ad .store-text { font-size: 12px; opacity: 0.7; }
+
+  /* AD 2: INSTAGRAM FEED / FACEBOOK (1080x1080) */
+  .square-ad {
+    width: 480px; height: 480px; background: var(--cream);
+    border-radius: 16px; overflow: hidden; position: relative;
+    display: flex; flex-direction: column;
+  }
+  .square-ad .top-bar {
+    background: var(--gradient); padding: 24px 28px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .square-ad .top-bar .brand { display: flex; align-items: center; gap: 8px; }
+  .square-ad .top-bar .brand-icon { font-size: 24px; }
+  .square-ad .top-bar .brand-name { font-size: 22px; font-weight: 800; color: #fff; }
+  .square-ad .top-bar .badge {
+    background: rgba(255,255,255,0.2); padding: 6px 14px;
+    border-radius: 20px; font-size: 12px; font-weight: 700; color: #fff;
+  }
+  .square-ad .content {
+    flex: 1; padding: 28px; display: flex;
+    flex-direction: column; justify-content: center;
+  }
+  .square-ad .content h2 {
+    font-size: 32px; font-weight: 800; color: var(--charcoal);
+    line-height: 1.15; margin-bottom: 16px;
+  }
+  .square-ad .content h2 span { color: var(--orange); }
+  .square-ad .features { list-style: none; margin-bottom: 24px; }
+  .square-ad .features li {
+    display: flex; align-items: center; gap: 10px;
+    padding: 6px 0; font-size: 15px; color: var(--charcoal); font-weight: 500;
+  }
+  .square-ad .features .check {
+    width: 22px; height: 22px; background: var(--orange); border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px; color: #fff; flex-shrink: 0;
+  }
+  .square-ad .cta-row { display: flex; align-items: center; gap: 16px; }
+  .square-ad .cta-row .btn {
+    background: var(--gradient); color: #fff; font-weight: 700;
+    font-size: 15px; padding: 12px 28px; border-radius: 12px;
+    text-decoration: none; box-shadow: 0 4px 16px rgba(255,107,28,0.3);
+  }
+  .square-ad .cta-row .free-text { font-size: 13px; color: #888; font-weight: 500; }
+
+  /* AD 3: BANNER AD (728x90 Leaderboard) */
+  .banner-ad {
+    width: 728px; height: 90px; background: var(--dark);
+    border-radius: 12px; overflow: hidden; display: flex;
+    align-items: center; padding: 0 24px; gap: 20px; border: 1px solid #333;
+  }
+  .banner-ad .brand-area { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
+  .banner-ad .brand-area .icon { font-size: 28px; }
+  .banner-ad .brand-area .name { font-size: 20px; font-weight: 800; color: #fff; }
+  .banner-ad .divider { width: 1px; height: 40px; background: #444; flex-shrink: 0; }
+  .banner-ad .message { flex: 1; }
+  .banner-ad .message h3 { font-size: 16px; font-weight: 700; color: #fff; margin-bottom: 2px; }
+  .banner-ad .message p { font-size: 12px; color: #999; }
+  .banner-ad .emojis { font-size: 22px; letter-spacing: 4px; flex-shrink: 0; }
+  .banner-ad .cta {
+    background: var(--orange); color: #fff; font-size: 14px; font-weight: 700;
+    padding: 10px 20px; border-radius: 10px; text-decoration: none;
+    flex-shrink: 0; white-space: nowrap;
+  }
+
+  /* AD 4: FOOD TRUCK OWNER AD (1080x1080) */
+  .owner-ad {
+    width: 480px; height: 480px; background: var(--charcoal);
+    border-radius: 16px; overflow: hidden; position: relative;
+    display: flex; flex-direction: column;
+  }
+  .owner-ad .accent-bar { height: 6px; background: var(--gradient); }
+  .owner-ad .content {
+    flex: 1; padding: 32px; display: flex;
+    flex-direction: column; justify-content: space-between;
+  }
+  .owner-ad .top { display: flex; align-items: center; justify-content: space-between; }
+  .owner-ad .top .brand { display: flex; align-items: center; gap: 8px; }
+  .owner-ad .top .brand .icon { font-size: 20px; }
+  .owner-ad .top .brand .name { font-size: 18px; font-weight: 800; }
+  .owner-ad .top .for-owners {
+    font-size: 11px; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 1.5px; color: var(--orange);
+    border: 1px solid var(--orange); padding: 5px 12px; border-radius: 6px;
+  }
+  .owner-ad .middle { text-align: center; }
+  .owner-ad .middle .big-icon { font-size: 56px; margin-bottom: 16px; }
+  .owner-ad .middle h2 { font-size: 28px; font-weight: 800; line-height: 1.2; margin-bottom: 12px; }
+  .owner-ad .middle h2 span { color: var(--orange); }
+  .owner-ad .middle p { font-size: 14px; color: #aaa; line-height: 1.5; max-width: 320px; margin: 0 auto; }
+  .owner-ad .tiers { display: flex; gap: 12px; }
+  .owner-ad .tier-card {
+    flex: 1; background: rgba(255,255,255,0.06); border-radius: 12px;
+    padding: 16px; text-align: center; border: 1px solid rgba(255,255,255,0.08);
+  }
+  .owner-ad .tier-card.pro { border-color: var(--orange); background: rgba(255,107,28,0.08); }
+  .owner-ad .tier-card .tier-name {
+    font-size: 13px; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 1px; margin-bottom: 4px;
+  }
+  .owner-ad .tier-card.pro .tier-name { color: var(--orange); }
+  .owner-ad .tier-card .tier-price { font-size: 22px; font-weight: 800; }
+  .owner-ad .tier-card .tier-period { font-size: 11px; color: #888; }
+  .owner-ad .bottom-cta { text-align: center; }
+  .owner-ad .bottom-cta .btn {
+    display: inline-block; background: var(--gradient); color: #fff;
+    font-weight: 700; font-size: 15px; padding: 14px 40px;
+    border-radius: 12px; text-decoration: none;
+    box-shadow: 0 4px 20px rgba(255,107,28,0.3);
+  }
+
+  /* AD 5: TWITTER / X CARD (1200x628) */
+  .twitter-ad {
+    width: 600px; height: 314px; background: var(--cream);
+    border-radius: 16px; overflow: hidden; display: flex;
+  }
+  .twitter-ad .left {
+    width: 55%; padding: 32px; display: flex;
+    flex-direction: column; justify-content: center;
+  }
+  .twitter-ad .left .brand { display: flex; align-items: center; gap: 6px; margin-bottom: 16px; }
+  .twitter-ad .left .brand .icon { font-size: 18px; }
+  .twitter-ad .left .brand .name { font-size: 16px; font-weight: 800; color: var(--charcoal); }
+  .twitter-ad .left h2 {
+    font-size: 26px; font-weight: 800; color: var(--charcoal);
+    line-height: 1.15; margin-bottom: 12px;
+  }
+  .twitter-ad .left h2 span { color: var(--orange); }
+  .twitter-ad .left p { font-size: 13px; color: #777; line-height: 1.5; margin-bottom: 20px; }
+  .twitter-ad .left .btn {
+    display: inline-block; background: var(--gradient); color: #fff;
+    font-weight: 700; font-size: 14px; padding: 12px 28px;
+    border-radius: 10px; text-decoration: none;
+    box-shadow: 0 4px 16px rgba(255,107,28,0.25); width: fit-content;
+  }
+  .twitter-ad .right {
+    width: 45%; background: var(--gradient); display: flex;
+    flex-direction: column; align-items: center;
+    justify-content: center; gap: 12px; position: relative;
+  }
+  .twitter-ad .right .bg-circles { position: absolute; top: 0; left: 0; right: 0; bottom: 0; overflow: hidden; }
+  .twitter-ad .right .bg-circles .circle { position: absolute; border-radius: 50%; border: 1px solid rgba(255,255,255,0.15); }
+  .twitter-ad .right .bg-circles .c1 { width: 200px; height: 200px; top: -60px; right: -40px; }
+  .twitter-ad .right .bg-circles .c2 { width: 160px; height: 160px; bottom: -30px; left: -50px; }
+  .twitter-ad .right .bg-circles .c3 { width: 100px; height: 100px; top: 40%; left: 30%; }
+  .twitter-ad .right .phone-mock {
+    width: 140px; height: 240px; background: #fff; border-radius: 20px;
+    box-shadow: 0 12px 40px rgba(0,0,0,0.2); overflow: hidden;
+    position: relative; z-index: 1;
+  }
+  .twitter-ad .right .phone-mock .phone-header {
+    background: var(--charcoal); padding: 8px 12px;
+    display: flex; align-items: center; gap: 4px;
+  }
+  .twitter-ad .right .phone-mock .phone-header .dot { width: 4px; height: 4px; background: var(--orange); border-radius: 50%; }
+  .twitter-ad .right .phone-mock .phone-header span { font-size: 8px; font-weight: 700; color: #fff; margin-left: 4px; }
+  .twitter-ad .right .phone-mock .phone-body { padding: 8px; }
+  .twitter-ad .right .phone-mock .mock-card { background: #f5f5f5; border-radius: 8px; padding: 8px; margin-bottom: 6px; }
+  .twitter-ad .right .phone-mock .mock-card .mock-title { font-size: 8px; font-weight: 700; color: var(--charcoal); margin-bottom: 2px; }
+  .twitter-ad .right .phone-mock .mock-card .mock-sub { font-size: 6px; color: #999; }
+  .twitter-ad .right .phone-mock .mock-card .mock-stars { font-size: 7px; color: #f5a623; margin-top: 2px; }
+  .twitter-ad .right .phone-mock .mock-dot-row { display: flex; gap: 4px; margin-bottom: 6px; }
+  .twitter-ad .right .phone-mock .mock-chip {
+    font-size: 6px; background: var(--orange); color: #fff;
+    padding: 3px 6px; border-radius: 8px; font-weight: 600;
+  }
+  .twitter-ad .right .phone-mock .mock-chip.inactive { background: #eee; color: #999; }
+
+  /* AD 6: APP STORE FEATURE GRAPHIC (1024x500) */
+  .feature-ad {
+    width: 640px; height: 312px; background: var(--gradient);
+    border-radius: 16px; overflow: hidden; position: relative;
+    display: flex; align-items: center; padding: 0 48px;
+  }
+  .feature-ad .bg-pattern {
+    position: absolute; top: 0; left: 0; right: 0; bottom: 0; opacity: 0.06;
+    background-image:
+      radial-gradient(circle at 20% 80%, rgba(255,255,255,0.3) 0%, transparent 50%),
+      radial-gradient(circle at 80% 20%, rgba(255,255,255,0.2) 0%, transparent 40%);
+  }
+  .feature-ad .left-content { flex: 1; position: relative; z-index: 1; }
+  .feature-ad .left-content .brand { display: flex; align-items: center; gap: 10px; margin-bottom: 16px; }
+  .feature-ad .left-content .brand .icon { font-size: 28px; }
+  .feature-ad .left-content .brand .name { font-size: 28px; font-weight: 900; letter-spacing: -0.5px; }
+  .feature-ad .left-content h2 { font-size: 24px; font-weight: 700; line-height: 1.3; margin-bottom: 8px; max-width: 300px; }
+  .feature-ad .left-content p { font-size: 14px; opacity: 0.85; max-width: 280px; line-height: 1.5; }
+  .feature-ad .right-visual { position: relative; z-index: 1; display: flex; gap: 16px; align-items: center; }
+  .feature-ad .food-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+  .feature-ad .food-grid .food-item {
+    width: 56px; height: 56px; background: rgba(255,255,255,0.15);
+    border-radius: 14px; display: flex; align-items: center;
+    justify-content: center; font-size: 28px;
+    backdrop-filter: blur(4px); border: 1px solid rgba(255,255,255,0.1);
+  }
+
+  @media (max-width: 800px) {
+    body { padding: 20px; }
+    .square-ad, .owner-ad { width: 100%; max-width: 480px; }
+    .banner-ad { width: 100%; max-width: 728px; }
+    .twitter-ad { width: 100%; max-width: 600px; }
+    .feature-ad { width: 100%; max-width: 640px; }
+  }
+</style>
+</head>
+<body>
+
+<h1 class="page-title">RollUp Digital Ad Designs</h1>
+
+<!-- AD 1: Instagram Story / TikTok -->
+<div class="ad-section">
+  <div class="ad-label">Ad 1 &mdash; Instagram Story / TikTok (9:16)</div>
+  <div class="ad-container">
+    <div class="story-ad">
+      <div class="bg-pattern"></div>
+      <div class="logo-area">
+        <div class="truck-icon">&#x1F69A;</div>
+        <div class="logo-text">RollUp</div>
+      </div>
+      <div class="hero-content">
+        <h2>Your Next Favorite Meal Is Around the Corner</h2>
+        <p>Find food trucks near you. Browse menus. Get directions. Score deals.</p>
+      </div>
+      <div class="food-emojis">&#x1F32E; &#x1F356; &#x1F355; &#x1F35C; &#x1F354;</div>
+      <div class="cta-area">
+        <div class="cta-btn">Download Free</div>
+        <div class="store-text">Available on the App Store</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- AD 2: Instagram Feed / Facebook -->
+<div class="ad-section">
+  <div class="ad-label">Ad 2 &mdash; Instagram Feed / Facebook (1:1)</div>
+  <div class="ad-container">
+    <div class="square-ad">
+      <div class="top-bar">
+        <div class="brand">
+          <span class="brand-icon">&#x1F69A;</span>
+          <span class="brand-name">RollUp</span>
+        </div>
+        <span class="badge">FREE APP</span>
+      </div>
+      <div class="content">
+        <h2>Stop Scrolling.<br><span>Start Eating.</span></h2>
+        <ul class="features">
+          <li><span class="check">&#10003;</span> Find food trucks near you in real time</li>
+          <li><span class="check">&#10003;</span> Browse full menus with prices</li>
+          <li><span class="check">&#10003;</span> One-tap driving directions</li>
+          <li><span class="check">&#10003;</span> Exclusive deals &amp; coupons</li>
+          <li><span class="check">&#10003;</span> Read reviews from other foodies</li>
+        </ul>
+        <div class="cta-row">
+          <a class="btn" href="#">Download Now</a>
+          <span class="free-text">Free on the App Store</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- AD 3: Banner (Leaderboard 728x90) -->
+<div class="ad-section">
+  <div class="ad-label">Ad 3 &mdash; Web Banner / Leaderboard (728x90)</div>
+  <div class="ad-container">
+    <div class="banner-ad">
+      <div class="brand-area">
+        <span class="icon">&#x1F69A;</span>
+        <span class="name">RollUp</span>
+      </div>
+      <div class="divider"></div>
+      <div class="message">
+        <h3>Hungry? Find food trucks near you.</h3>
+        <p>Live locations, full menus, reviews &amp; deals &mdash; all in one app.</p>
+      </div>
+      <div class="emojis">&#x1F32E;&#x1F355;&#x1F356;</div>
+      <a class="cta" href="#">Get the App</a>
+    </div>
+  </div>
+</div>
+
+<!-- AD 4: Food Truck Owner Ad -->
+<div class="ad-section">
+  <div class="ad-label">Ad 4 &mdash; Truck Owner Recruitment (1:1)</div>
+  <div class="ad-container">
+    <div class="owner-ad">
+      <div class="accent-bar"></div>
+      <div class="content">
+        <div class="top">
+          <div class="brand">
+            <span class="icon">&#x1F69A;</span>
+            <span class="name">RollUp</span>
+          </div>
+          <span class="for-owners">For Truck Owners</span>
+        </div>
+        <div class="middle">
+          <div class="big-icon">&#x1F4CD;</div>
+          <h2>Put Your Truck<br><span>On The Map</span></h2>
+          <p>Join RollUp and reach thousands of hungry customers. List your menu, broadcast your location, and grow your business.</p>
+        </div>
+        <div class="tiers">
+          <div class="tier-card">
+            <div class="tier-name">Basic</div>
+            <div class="tier-price">$9.99</div>
+            <div class="tier-period">/month</div>
+          </div>
+          <div class="tier-card pro">
+            <div class="tier-name">Pro</div>
+            <div class="tier-price">$24.99</div>
+            <div class="tier-period">/month</div>
+          </div>
+        </div>
+        <div class="bottom-cta">
+          <a class="btn" href="#">List Your Truck</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- AD 5: Twitter / X Card -->
+<div class="ad-section">
+  <div class="ad-label">Ad 5 &mdash; Twitter / X Card (1200x628)</div>
+  <div class="ad-container">
+    <div class="twitter-ad">
+      <div class="left">
+        <div class="brand">
+          <span class="icon">&#x1F69A;</span>
+          <span class="name">RollUp</span>
+        </div>
+        <h2>Food Trucks.<br><span>Found Fast.</span></h2>
+        <p>Discover the best food trucks near you with live GPS tracking, menus, reviews, and exclusive deals.</p>
+        <a class="btn" href="#">Download Free</a>
+      </div>
+      <div class="right">
+        <div class="bg-circles">
+          <div class="circle c1"></div>
+          <div class="circle c2"></div>
+          <div class="circle c3"></div>
+        </div>
+        <div class="phone-mock">
+          <div class="phone-header">
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span>RollUp</span>
+          </div>
+          <div class="phone-body">
+            <div class="mock-dot-row">
+              <span class="mock-chip">&#x1F32E; Mexican</span>
+              <span class="mock-chip inactive">&#x1F356; BBQ</span>
+              <span class="mock-chip inactive">&#x1F355; Italian</span>
+            </div>
+            <div class="mock-card">
+              <div class="mock-title">Taco Libre</div>
+              <div class="mock-sub">Mexican &bull; 0.3 mi &bull; Open</div>
+              <div class="mock-stars">&#9733;&#9733;&#9733;&#9733;&#9733; 4.8</div>
+            </div>
+            <div class="mock-card">
+              <div class="mock-title">Smokin' Joe's BBQ</div>
+              <div class="mock-sub">BBQ &bull; 0.8 mi &bull; Open</div>
+              <div class="mock-stars">&#9733;&#9733;&#9733;&#9733;&#9734; 4.5</div>
+            </div>
+            <div class="mock-card">
+              <div class="mock-title">Seoul on Wheels</div>
+              <div class="mock-sub">Korean &bull; 1.2 mi &bull; Closed</div>
+              <div class="mock-stars">&#9733;&#9733;&#9733;&#9733;&#9734; 4.6</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- AD 6: App Store Feature Graphic -->
+<div class="ad-section">
+  <div class="ad-label">Ad 6 &mdash; App Store Feature Graphic (1024x500)</div>
+  <div class="ad-container">
+    <div class="feature-ad">
+      <div class="bg-pattern"></div>
+      <div class="left-content">
+        <div class="brand">
+          <span class="icon">&#x1F69A;</span>
+          <span class="name">RollUp</span>
+        </div>
+        <h2>Discover Amazing Food Trucks Near You</h2>
+        <p>Live tracking, menus, reviews, deals &mdash; everything you need to find your next favorite meal.</p>
+      </div>
+      <div class="right-visual">
+        <div class="food-grid">
+          <div class="food-item">&#x1F32E;</div>
+          <div class="food-item">&#x1F356;</div>
+          <div class="food-item">&#x1F355;</div>
+          <div class="food-item">&#x1F35C;</div>
+          <div class="food-item">&#x1F354;</div>
+          <div class="food-item">&#x1F957;</div>
+          <div class="food-item">&#x1F369;</div>
+          <div class="food-item">&#x1F990;</div>
+          <div class="food-item">&#x1F371;</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
