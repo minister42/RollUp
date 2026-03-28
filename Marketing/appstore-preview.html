@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RollUp - App Store Listing Preview</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+
+  :root {
+    --orange: #FF6B1C;
+    --red: #E33835;
+    --charcoal: #2E2E33;
+    --cream: #FFF8EE;
+    --green: #38C773;
+    --gradient: linear-gradient(135deg, #FF6B1C, #E33835);
+    --bg: #000;
+    --surface: #1C1C1E;
+    --surface2: #2C2C2E;
+    --text: #fff;
+    --text2: #8E8E93;
+    --text3: #636366;
+    --separator: #38383A;
+    --blue: #0A84FF;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: -apple-system, 'SF Pro Display', 'Inter', BlinkMacSystemFont, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Top nav bar */
+  .nav-bar {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(0,0,0,0.85);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 0.5px solid var(--separator);
+    padding: 12px 20px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .nav-bar .back { color: var(--blue); font-size: 17px; font-weight: 400; cursor: pointer; display: flex; align-items: center; gap: 4px; }
+  .nav-bar .back svg { width: 12px; height: 20px; }
+  .nav-bar .title { font-size: 17px; font-weight: 600; }
+  .nav-bar .account { width: 28px; height: 28px; background: var(--surface2); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px; }
+
+  .container { max-width: 640px; margin: 0 auto; padding: 0 20px; }
+
+  /* App header */
+  .app-header {
+    display: flex; gap: 16px; padding: 20px 0;
+    align-items: flex-start;
+  }
+  .app-icon {
+    width: 118px; height: 118px; border-radius: 26px;
+    background: var(--gradient);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 56px; flex-shrink: 0;
+    box-shadow: 0 4px 20px rgba(255,107,28,0.3);
+    position: relative; overflow: hidden;
+  }
+  .app-icon::after {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+    background: linear-gradient(180deg, rgba(255,255,255,0.15) 0%, transparent 50%);
+    border-radius: 26px;
+  }
+  .app-icon span { position: relative; z-index: 1; }
+  .app-info { flex: 1; padding-top: 2px; }
+  .app-info .name { font-size: 22px; font-weight: 700; margin-bottom: 2px; letter-spacing: -0.3px; }
+  .app-info .subtitle { font-size: 15px; color: var(--text2); margin-bottom: 12px; }
+  .app-info .get-btn {
+    display: inline-block; background: var(--blue); color: #fff;
+    font-size: 15px; font-weight: 700; padding: 7px 24px;
+    border-radius: 100px; cursor: pointer; letter-spacing: 0.3px;
+  }
+  .app-info .iap-note { font-size: 11px; color: var(--text3); margin-top: 6px; }
+
+  /* Meta row */
+  .meta-row {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 16px 0; border-top: 0.5px solid var(--separator);
+    border-bottom: 0.5px solid var(--separator);
+    gap: 8px;
+  }
+  .meta-item { flex: 1; text-align: center; }
+  .meta-item .meta-label { font-size: 11px; color: var(--text3); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; }
+  .meta-item .meta-value { font-size: 20px; font-weight: 700; letter-spacing: -0.5px; }
+  .meta-item .meta-sub { font-size: 11px; color: var(--text3); margin-top: 2px; }
+  .meta-divider { width: 0.5px; height: 36px; background: var(--separator); flex-shrink: 0; }
+
+  /* What's New */
+  .section { padding: 20px 0; }
+  .section-header {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-bottom: 12px;
+  }
+  .section-header h2 { font-size: 22px; font-weight: 700; letter-spacing: -0.3px; }
+  .section-header .see-all { color: var(--blue); font-size: 15px; cursor: pointer; }
+  .section + .section { border-top: 0.5px solid var(--separator); }
+
+  .version-info { display: flex; justify-content: space-between; margin-bottom: 8px; }
+  .version-info .version { font-size: 15px; color: var(--text2); }
+  .version-info .date { font-size: 15px; color: var(--text2); }
+  .whats-new-text { font-size: 15px; color: var(--text2); line-height: 1.5; }
+
+  /* Screenshots */
+  .screenshots-scroll {
+    display: flex; gap: 12px; overflow-x: auto;
+    padding-bottom: 8px; margin: 0 -20px; padding-left: 20px; padding-right: 20px;
+    scrollbar-width: none;
+  }
+  .screenshots-scroll::-webkit-scrollbar { display: none; }
+  .screenshot-card {
+    width: 220px; height: 390px; border-radius: 20px; flex-shrink: 0;
+    overflow: hidden; position: relative;
+    border: 0.5px solid var(--separator);
+  }
+  .screenshot-card .ss-bg {
+    width: 100%; height: 100%;
+    display: flex; flex-direction: column; align-items: center;
+    justify-content: center; padding: 20px; text-align: center;
+  }
+  .screenshot-card .ss-icon { font-size: 40px; margin-bottom: 12px; }
+  .screenshot-card .ss-title { font-size: 14px; font-weight: 700; margin-bottom: 4px; }
+  .screenshot-card .ss-sub { font-size: 11px; opacity: 0.7; line-height: 1.3; }
+  .ss-1 { background: linear-gradient(160deg, #FF6B1C, #E33835); }
+  .ss-2 { background: linear-gradient(160deg, #38C773, #2a9d5c); }
+  .ss-3 { background: linear-gradient(160deg, #2E2E33, #555); }
+  .ss-4 { background: linear-gradient(160deg, #E33835, #c0392b); }
+  .ss-5 { background: linear-gradient(160deg, #FFF8EE, #f0e0c8); color: #2E2E33; }
+  .ss-6 { background: linear-gradient(160deg, #2E2E33, #444); }
+  .ss-7 { background: linear-gradient(160deg, #FF6B1C, #ff9a5c); }
+  .ss-8 { background: linear-gradient(160deg, #555, #2E2E33); }
+
+  /* Phone frame inside screenshot */
+  .phone-frame {
+    width: 160px; height: 280px; background: #111; border-radius: 24px;
+    border: 2px solid #444; margin-top: 12px; padding: 8px;
+    display: flex; flex-direction: column; overflow: hidden;
+  }
+  .phone-frame .status-bar { height: 16px; display: flex; justify-content: center; margin-bottom: 4px; }
+  .phone-frame .notch { width: 50px; height: 12px; background: #000; border-radius: 0 0 10px 10px; }
+  .phone-frame .phone-content { flex: 1; background: var(--cream); border-radius: 4px; overflow: hidden; padding: 6px; }
+
+  /* Mini UI mockups inside phone frames */
+  .mini-search { height: 16px; background: #eee; border-radius: 8px; margin-bottom: 6px; }
+  .mini-chips { display: flex; gap: 3px; margin-bottom: 6px; overflow: hidden; }
+  .mini-chip { font-size: 5px; padding: 2px 5px; border-radius: 6px; background: var(--orange); color: #fff; white-space: nowrap; font-weight: 600; }
+  .mini-chip.off { background: #ddd; color: #999; }
+  .mini-card { background: #fff; border-radius: 6px; padding: 5px; margin-bottom: 4px; box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
+  .mini-card-title { font-size: 6px; font-weight: 700; color: var(--charcoal); }
+  .mini-card-sub { font-size: 5px; color: #999; }
+  .mini-card-stars { font-size: 5px; color: #f5a623; }
+  .mini-map { height: 60px; background: #d4edda; border-radius: 6px; margin-bottom: 4px; position: relative; overflow: hidden; }
+  .mini-map-road { position: absolute; top: 30%; left: 0; right: 0; height: 3px; background: #fff; }
+  .mini-map-road2 { position: absolute; top: 60%; left: 20%; right: 20%; height: 3px; background: #fff; transform: rotate(-15deg); }
+  .mini-pin { position: absolute; font-size: 10px; }
+  .mini-pin.p1 { top: 15%; left: 30%; }
+  .mini-pin.p2 { top: 50%; left: 60%; }
+  .mini-pin.p3 { top: 35%; left: 75%; }
+
+  /* Description */
+  .description-text { font-size: 15px; color: var(--text2); line-height: 1.6; }
+  .description-text strong { color: var(--text); font-weight: 600; }
+  .description-text .heading { color: var(--text); font-weight: 700; font-size: 15px; margin-top: 16px; display: block; }
+  .desc-fade { position: relative; max-height: 200px; overflow: hidden; }
+  .desc-fade::after {
+    content: ''; position: absolute; bottom: 0; left: 0; right: 0;
+    height: 60px; background: linear-gradient(transparent, var(--bg));
+  }
+  .desc-more { color: var(--blue); font-size: 15px; cursor: pointer; margin-top: 8px; display: inline-block; }
+  .desc-full { display: none; }
+  .desc-full.show { display: block; max-height: none; }
+
+  /* Info section */
+  .info-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 0;
+  }
+  .info-item {
+    padding: 14px 0; border-bottom: 0.5px solid var(--separator);
+  }
+  .info-item:nth-child(odd) { padding-right: 16px; }
+  .info-item:nth-child(even) { padding-left: 16px; border-left: 0.5px solid var(--separator); }
+  .info-item .info-label { font-size: 13px; color: var(--text3); margin-bottom: 4px; }
+  .info-item .info-value { font-size: 15px; color: var(--text); font-weight: 500; }
+
+  /* Promo text banner */
+  .promo-banner {
+    background: var(--surface); border-radius: 14px;
+    padding: 16px 20px; margin: 8px 0 16px;
+  }
+  .promo-banner p { font-size: 15px; color: var(--text2); line-height: 1.5; }
+
+  /* Rating stars */
+  .stars { color: var(--orange); letter-spacing: 2px; }
+
+  /* Subscription plans */
+  .plans { display: flex; gap: 12px; margin-top: 12px; }
+  .plan-card {
+    flex: 1; background: var(--surface); border-radius: 14px;
+    padding: 16px; text-align: center;
+    border: 1px solid var(--separator);
+    transition: border-color 0.2s;
+  }
+  .plan-card.featured { border-color: var(--orange); }
+  .plan-card .plan-name { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--text2); margin-bottom: 8px; }
+  .plan-card.featured .plan-name { color: var(--orange); }
+  .plan-card .plan-price { font-size: 28px; font-weight: 800; letter-spacing: -1px; }
+  .plan-card .plan-period { font-size: 13px; color: var(--text3); }
+  .plan-card .plan-features { list-style: none; margin-top: 12px; text-align: left; }
+  .plan-card .plan-features li { font-size: 12px; color: var(--text2); padding: 3px 0; display: flex; align-items: center; gap: 6px; }
+  .plan-card .plan-features li::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: var(--green); flex-shrink: 0; }
+  .plan-card.featured .plan-features li::before { background: var(--orange); }
+
+  /* Keywords */
+  .keywords { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
+  .keyword {
+    font-size: 13px; padding: 6px 12px; background: var(--surface);
+    border-radius: 100px; color: var(--text2); border: 0.5px solid var(--separator);
+  }
+
+  /* Review notes */
+  .review-notes {
+    background: var(--surface); border-radius: 14px;
+    padding: 16px 20px; margin-top: 8px;
+  }
+  .review-notes p { font-size: 13px; color: var(--text2); line-height: 1.6; }
+
+  /* Footer */
+  .footer {
+    padding: 40px 0; text-align: center; border-top: 0.5px solid var(--separator);
+    margin-top: 20px;
+  }
+  .footer-links { display: flex; justify-content: center; gap: 24px; margin-bottom: 12px; }
+  .footer-links a { font-size: 13px; color: var(--blue); text-decoration: none; }
+  .footer .copyright { font-size: 11px; color: var(--text3); }
+
+  /* Badge label */
+  .badge-label {
+    position: absolute; top: 12px; left: 12px; z-index: 2;
+    font-size: 9px; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 1px; background: rgba(0,0,0,0.5); backdrop-filter: blur(8px);
+    padding: 4px 8px; border-radius: 6px; color: #fff;
+  }
+</style>
+</head>
+<body>
+
+<!-- Nav Bar -->
+<div class="nav-bar">
+  <div class="back">
+    <svg viewBox="0 0 12 20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M10 2L2 10L10 18"/>
+    </svg>
+    Search
+  </div>
+  <div class="title">App&nbsp;Store</div>
+  <div class="account">&#x1F464;</div>
+</div>
+
+<div class="container">
+
+  <!-- App Header -->
+  <div class="app-header">
+    <div class="app-icon"><span>&#x1F69A;</span></div>
+    <div class="app-info">
+      <div class="name">RollUp - Food Truck Finder</div>
+      <div class="subtitle">Find Food Trucks Near You</div>
+      <div class="get-btn">GET</div>
+      <div class="iap-note">In-App Purchases</div>
+    </div>
+  </div>
+
+  <!-- Meta Row -->
+  <div class="meta-row">
+    <div class="meta-item">
+      <div class="meta-label">Rating</div>
+      <div class="meta-value">4.8</div>
+      <div class="meta-sub stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+    </div>
+    <div class="meta-divider"></div>
+    <div class="meta-item">
+      <div class="meta-label">Age</div>
+      <div class="meta-value">4+</div>
+      <div class="meta-sub">Years Old</div>
+    </div>
+    <div class="meta-divider"></div>
+    <div class="meta-item">
+      <div class="meta-label">Category</div>
+      <div class="meta-value" style="font-size:16px;">&#x1F37D;</div>
+      <div class="meta-sub">Food &amp; Drink</div>
+    </div>
+    <div class="meta-divider"></div>
+    <div class="meta-item">
+      <div class="meta-label">Price</div>
+      <div class="meta-value" style="font-size:18px;">Free</div>
+      <div class="meta-sub">In-App Purchases</div>
+    </div>
+  </div>
+
+  <!-- Promotional Text -->
+  <div class="section">
+    <div class="promo-banner">
+      <p>Discover food trucks near you in real time. Browse menus, read reviews, grab deals, and get directions &mdash; all in one app. Your next favorite meal is around the corner.</p>
+    </div>
+  </div>
+
+  <!-- Screenshots -->
+  <div class="section" style="border-top: 0.5px solid var(--separator);">
+    <div class="section-header">
+      <h2>Preview</h2>
+    </div>
+    <div class="screenshots-scroll">
+      <!-- SS1: Explore -->
+      <div class="screenshot-card">
+        <div class="ss-bg ss-1">
+          <div class="ss-title">Explore Nearby</div>
+          <div class="ss-sub">Search by cuisine, browse ratings</div>
+          <div class="phone-frame">
+            <div class="status-bar"><div class="notch"></div></div>
+            <div class="phone-content">
+              <div class="mini-search"></div>
+              <div class="mini-chips">
+                <span class="mini-chip">&#x1F32E; Mexican</span>
+                <span class="mini-chip off">&#x1F356; BBQ</span>
+                <span class="mini-chip off">&#x1F355; Italian</span>
+              </div>
+              <div class="mini-card">
+                <div class="mini-card-title">Taco Libre</div>
+                <div class="mini-card-sub">Mexican &bull; 0.3 mi</div>
+                <div class="mini-card-stars">&#9733;&#9733;&#9733;&#9733;&#9733; 4.8</div>
+              </div>
+              <div class="mini-card">
+                <div class="mini-card-title">Seoul on Wheels</div>
+                <div class="mini-card-sub">Korean &bull; 0.8 mi</div>
+                <div class="mini-card-stars">&#9733;&#9733;&#9733;&#9733;&#9734; 4.6</div>
+              </div>
+              <div class="mini-card">
+                <div class="mini-card-title">Bella Strada</div>
+                <div class="mini-card-sub">Italian &bull; 1.1 mi</div>
+                <div class="mini-card-stars">&#9733;&#9733;&#9733;&#9733;&#9734; 4.5</div>
+              </div>
+              <div class="mini-card">
+                <div class="mini-card-title">The Green Bowl</div>
+                <div class="mini-card-sub">Vegan &bull; 1.4 mi</div>
+                <div class="mini-card-stars">&#9733;&#9733;&#9733;&#9733;&#9733; 4.9</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SS2: Map -->
+      <div class="screenshot-card">
+        <div class="ss-bg ss-2">
+          <div class="ss-title">Live Map</div>
+          <div class="ss-sub">Real-time GPS tracking</div>
+          <div class="phone-frame">
+            <div class="status-bar"><div class="notch"></div></div>
+            <div class="phone-content" style="padding:0;">
+              <div class="mini-map" style="height:100%; border-radius:4px; background: #c8e6c9;">
+                <div class="mini-map-road"></div>
+                <div class="mini-map-road2"></div>
+                <div class="mini-pin p1">&#x1F69A;</div>
+                <div class="mini-pin p2">&#x1F69A;</div>
+                <div class="mini-pin p3">&#x1F69A;</div>
+                <div style="position:absolute; bottom:0; left:0; right:0; background:rgba(255,255,255,0.95); padding:6px; border-radius:8px 8px 0 0;">
+                  <div class="mini-card-title">Taco Libre</div>
+                  <div class="mini-card-sub">0.3 mi &bull; Open Now</div>
+                  <div style="margin-top:4px; font-size:5px; background:var(--orange); color:#fff; display:inline-block; padding:2px 6px; border-radius:4px; font-weight:700;">Get Directions</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SS3: Truck Detail -->
+      <div class="screenshot-card">
+        <div class="ss-bg ss-3">
+          <div class="ss-title">Full Details</div>
+          <div class="ss-sub">Menus, reviews &amp; directions</div>
+          <div class="phone-frame">
+            <div class="status-bar"><div class="notch"></div></div>
+            <div class="phone-content">
+              <div style="height:40px; background:var(--orange); border-radius:4px; margin-bottom:4px; display:flex; align-items:center; justify-content:center; font-size:16px;">&#x1F69A;</div>
+              <div class="mini-card-title" style="font-size:8px; margin-bottom:2px;">Smokin' Joe's BBQ</div>
+              <div class="mini-card-stars" style="margin-bottom:4px;">&#9733;&#9733;&#9733;&#9733;&#9734; 4.5</div>
+              <div style="font-size:5px; font-weight:700; color:var(--charcoal); margin-bottom:2px;">MENU</div>
+              <div class="mini-card" style="margin-bottom:3px;">
+                <div style="display:flex; justify-content:space-between;">
+                  <span class="mini-card-title">Brisket Plate</span>
+                  <span class="mini-card-title">$14.99</span>
+                </div>
+              </div>
+              <div class="mini-card" style="margin-bottom:3px;">
+                <div style="display:flex; justify-content:space-between;">
+                  <span class="mini-card-title">Pulled Pork</span>
+                  <span class="mini-card-title">$11.99</span>
+                </div>
+              </div>
+              <div style="margin-top:4px; font-size:5px; background:var(--blue); color:#fff; display:inline-block; padding:2px 6px; border-radius:4px; font-weight:700;">&#x1F4CD; Directions</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SS4: Deals -->
+      <div class="screenshot-card">
+        <div class="ss-bg ss-4">
+          <div class="ss-title">Exclusive Deals</div>
+          <div class="ss-sub">Coupons &amp; discounts</div>
+          <div class="phone-frame">
+            <div class="status-bar"><div class="notch"></div></div>
+            <div class="phone-content">
+              <div style="font-size:6px; font-weight:700; color:var(--charcoal); margin-bottom:4px;">YOUR DEALS</div>
+              <div class="mini-card" style="border-left:3px solid var(--orange);">
+                <div class="mini-card-title">20% OFF</div>
+                <div class="mini-card-sub">Taco Libre &bull; Exp 4/15</div>
+              </div>
+              <div class="mini-card" style="border-left:3px solid var(--red);">
+                <div class="mini-card-title">$5 OFF $25+</div>
+                <div class="mini-card-sub">Seoul on Wheels &bull; Exp 4/20</div>
+              </div>
+              <div class="mini-card" style="border-left:3px solid var(--green);">
+                <div class="mini-card-title">BOGO Free</div>
+                <div class="mini-card-sub">The Green Bowl &bull; Exp 5/1</div>
+              </div>
+              <div class="mini-card" style="border-left:3px solid #8B5CF6;">
+                <div class="mini-card-title">Free Drink</div>
+                <div class="mini-card-sub">Smokin' Joe's &bull; Exp 4/30</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SS5: Role Selection -->
+      <div class="screenshot-card">
+        <div class="ss-bg ss-5">
+          <div class="ss-title" style="color: var(--charcoal);">Choose Your Role</div>
+          <div class="ss-sub" style="color: #666;">Eater or truck owner</div>
+          <div class="phone-frame">
+            <div class="status-bar"><div class="notch"></div></div>
+            <div class="phone-content" style="display:flex; flex-direction:column; align-items:center; justify-content:center; gap:6px;">
+              <div style="font-size:14px;">&#x1F69A;</div>
+              <div style="font-size:7px; font-weight:800; color:var(--charcoal);">RollUp</div>
+              <div style="background:var(--orange); color:#fff; width:90%; text-align:center; padding:6px; border-radius:8px; font-size:6px; font-weight:700;">&#x1F37D; I'm looking for food</div>
+              <div style="background:var(--charcoal); color:#fff; width:90%; text-align:center; padding:6px; border-radius:8px; font-size:6px; font-weight:700;">&#x1F69A; I own a food truck</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SS6: Owner Dashboard -->
+      <div class="screenshot-card">
+        <div class="ss-bg ss-6">
+          <div class="ss-title">Owner Dashboard</div>
+          <div class="ss-sub">Manage your business</div>
+          <div class="phone-frame">
+            <div class="status-bar"><div class="notch"></div></div>
+            <div class="phone-content">
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
+                <div class="mini-card-title" style="font-size:7px;">Dashboard</div>
+                <div style="font-size:5px; background:var(--green); color:#fff; padding:2px 5px; border-radius:4px; font-weight:700;">OPEN</div>
+              </div>
+              <div style="display:flex; gap:3px; margin-bottom:4px;">
+                <div class="mini-card" style="flex:1; text-align:center;"><div class="mini-card-title">142</div><div class="mini-card-sub">Views</div></div>
+                <div class="mini-card" style="flex:1; text-align:center;"><div class="mini-card-title">38</div><div class="mini-card-sub">Clicks</div></div>
+                <div class="mini-card" style="flex:1; text-align:center;"><div class="mini-card-title">4.7</div><div class="mini-card-sub">Rating</div></div>
+              </div>
+              <div class="mini-card"><div class="mini-card-title">&#x1F4DD; Edit Menu</div></div>
+              <div class="mini-card"><div class="mini-card-title">&#x1F3F7; Manage Coupons</div></div>
+              <div class="mini-card"><div class="mini-card-title">&#x1F4E3; Promote Truck</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SS7: Subscription -->
+      <div class="screenshot-card">
+        <div class="ss-bg ss-7">
+          <div class="ss-title">Subscription Plans</div>
+          <div class="ss-sub">Basic &amp; Pro tiers</div>
+          <div class="phone-frame">
+            <div class="status-bar"><div class="notch"></div></div>
+            <div class="phone-content" style="display:flex; flex-direction:column; align-items:center; justify-content:center; gap:4px;">
+              <div style="font-size:7px; font-weight:800; color:var(--charcoal); margin-bottom:2px;">Choose Your Plan</div>
+              <div style="width:100%; background:#fff; border:1px solid #ddd; border-radius:6px; padding:5px; text-align:center; margin-bottom:2px;">
+                <div style="font-size:6px; font-weight:700; color:var(--text3);">BASIC</div>
+                <div style="font-size:10px; font-weight:800; color:var(--charcoal);">$9.99</div>
+                <div style="font-size:5px; color:#999;">/month</div>
+              </div>
+              <div style="width:100%; background:#fff; border:2px solid var(--orange); border-radius:6px; padding:5px; text-align:center;">
+                <div style="font-size:5px; background:var(--orange); color:#fff; display:inline-block; padding:1px 4px; border-radius:3px; font-weight:700; margin-bottom:2px;">POPULAR</div>
+                <div style="font-size:6px; font-weight:700; color:var(--orange);">PRO</div>
+                <div style="font-size:10px; font-weight:800; color:var(--charcoal);">$24.99</div>
+                <div style="font-size:5px; color:#999;">/month</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SS8: Menu Management -->
+      <div class="screenshot-card">
+        <div class="ss-bg ss-8">
+          <div class="ss-title">Menu Editor</div>
+          <div class="ss-sub">Manage your offerings</div>
+          <div class="phone-frame">
+            <div class="status-bar"><div class="notch"></div></div>
+            <div class="phone-content">
+              <div style="font-size:7px; font-weight:700; color:var(--charcoal); margin-bottom:4px;">Menu Items</div>
+              <div style="font-size:5px; font-weight:600; color:var(--orange); margin-bottom:2px;">MAIN DISHES</div>
+              <div class="mini-card" style="margin-bottom:3px;">
+                <div style="display:flex; justify-content:space-between;">
+                  <span class="mini-card-title">Brisket Plate</span>
+                  <span class="mini-card-title" style="color:var(--green);">$14.99</span>
+                </div>
+                <div class="mini-card-sub">12hr smoked brisket</div>
+              </div>
+              <div class="mini-card" style="margin-bottom:3px;">
+                <div style="display:flex; justify-content:space-between;">
+                  <span class="mini-card-title">Pulled Pork</span>
+                  <span class="mini-card-title" style="color:var(--green);">$11.99</span>
+                </div>
+                <div class="mini-card-sub">Carolina style</div>
+              </div>
+              <div style="font-size:5px; font-weight:600; color:var(--orange); margin-bottom:2px; margin-top:4px;">SIDES</div>
+              <div class="mini-card">
+                <div style="display:flex; justify-content:space-between;">
+                  <span class="mini-card-title">Coleslaw</span>
+                  <span class="mini-card-title" style="color:var(--green);">$3.99</span>
+                </div>
+              </div>
+              <div style="margin-top:6px; text-align:center;">
+                <div style="font-size:5px; background:var(--orange); color:#fff; display:inline-block; padding:3px 8px; border-radius:4px; font-weight:700;">+ Add Item</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Description -->
+  <div class="section">
+    <div class="section-header">
+      <h2>Description</h2>
+    </div>
+    <div class="desc-fade" id="descShort">
+      <div class="description-text">
+        <strong>Craving something delicious? RollUp connects you with the best food trucks in your area &mdash; in real time.</strong><br><br>
+        Whether you're hunting for authentic street tacos, slow-smoked BBQ, wood-fired pizza, or vegan comfort food, RollUp makes it easy to discover, track, and navigate to food trucks near you.
+      </div>
+    </div>
+    <div class="desc-full" id="descFull">
+      <div class="description-text">
+        <strong>Craving something delicious? RollUp connects you with the best food trucks in your area &mdash; in real time.</strong><br><br>
+        Whether you're hunting for authentic street tacos, slow-smoked BBQ, wood-fired pizza, or vegan comfort food, RollUp makes it easy to discover, track, and navigate to food trucks near you.<br><br>
+        <span class="heading">FOR FOOD LOVERS:</span><br>
+        &bull; Search by cuisine &mdash; Mexican, BBQ, Korean, Italian, Seafood, Vegan, and more<br>
+        &bull; See live locations on the map with real-time GPS tracking<br>
+        &bull; Browse full menus with prices before you go<br>
+        &bull; Read reviews from other food truck fans<br>
+        &bull; Get one-tap driving directions via Apple Maps<br>
+        &bull; Score exclusive deals and coupons from your favorite trucks<br>
+        &bull; See which trucks are open right now with live status updates<br><br>
+        <span class="heading">FOR FOOD TRUCK OWNERS:</span><br>
+        RollUp is also built for you. List your truck, reach new customers, and grow your business &mdash; all from your phone.<br><br>
+        &bull; Create your truck profile with menu, photos, hours, and social links<br>
+        &bull; Pin your location or broadcast your live GPS position<br>
+        &bull; Toggle your "Open for Business" status so customers know when you're serving<br>
+        &bull; Create and manage coupons to drive traffic<br>
+        &bull; Run targeted ad campaigns to boost your visibility<br>
+        &bull; Choose from flexible subscription tiers that fit your budget<br><br>
+        <span class="heading">TWO SIMPLE PLANS FOR TRUCK OWNERS:</span><br>
+        &bull; Basic ($9.99/mo) &mdash; Get listed, post your menu, collect reviews, pin your location<br>
+        &bull; Pro ($24.99/mo) &mdash; Everything in Basic plus live GPS tracking, "Open" status broadcasting, and priority placement in search results<br><br>
+        RollUp is where street food meets smart technology. Download now and roll up to your next favorite meal.
+      </div>
+    </div>
+    <span class="desc-more" id="descToggle" onclick="toggleDesc()">more</span>
+  </div>
+
+  <!-- What's New -->
+  <div class="section">
+    <div class="section-header">
+      <h2>What's New</h2>
+    </div>
+    <div class="version-info">
+      <span class="version">Version 1.0</span>
+      <span class="date">Mar 2026</span>
+    </div>
+    <div class="whats-new-text">
+      Welcome to RollUp! Find the best food trucks near you with live GPS tracking, full menus, reviews, deals, and one-tap directions. Whether you're eating or serving, RollUp has you covered.
+    </div>
+  </div>
+
+  <!-- In-App Purchases / Subscriptions -->
+  <div class="section">
+    <div class="section-header">
+      <h2>In-App Purchases</h2>
+    </div>
+    <div class="plans">
+      <div class="plan-card">
+        <div class="plan-name">Basic</div>
+        <div class="plan-price">$9.99</div>
+        <div class="plan-period">/month</div>
+        <ul class="plan-features">
+          <li>Listed on RollUp</li>
+          <li>Menu &amp; profile</li>
+          <li>Customer reviews</li>
+          <li>Manual location pin</li>
+        </ul>
+      </div>
+      <div class="plan-card featured">
+        <div class="plan-name">Pro</div>
+        <div class="plan-price">$24.99</div>
+        <div class="plan-period">/month</div>
+        <ul class="plan-features">
+          <li>Everything in Basic</li>
+          <li>Live GPS tracking</li>
+          <li>"Open for Business" status</li>
+          <li>Priority in search</li>
+          <li>Analytics dashboard</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Keywords -->
+  <div class="section">
+    <div class="section-header">
+      <h2>Keywords</h2>
+    </div>
+    <div class="keywords">
+      <span class="keyword">food truck</span>
+      <span class="keyword">street food</span>
+      <span class="keyword">food finder</span>
+      <span class="keyword">food truck map</span>
+      <span class="keyword">food near me</span>
+      <span class="keyword">lunch</span>
+      <span class="keyword">tacos</span>
+      <span class="keyword">bbq</span>
+      <span class="keyword">food truck locator</span>
+    </div>
+  </div>
+
+  <!-- Information -->
+  <div class="section">
+    <div class="section-header">
+      <h2>Information</h2>
+    </div>
+    <div class="info-grid">
+      <div class="info-item">
+        <div class="info-label">Category</div>
+        <div class="info-value">Food &amp; Drink</div>
+      </div>
+      <div class="info-item">
+        <div class="info-label">Compatibility</div>
+        <div class="info-value">iOS 17.0+</div>
+      </div>
+      <div class="info-item">
+        <div class="info-label">Price</div>
+        <div class="info-value">Free</div>
+      </div>
+      <div class="info-item">
+        <div class="info-label">Age Rating</div>
+        <div class="info-value">4+</div>
+      </div>
+      <div class="info-item">
+        <div class="info-label">Developer</div>
+        <div class="info-value">RollUp Inc.</div>
+      </div>
+      <div class="info-item">
+        <div class="info-label">Languages</div>
+        <div class="info-value">English</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- App Review Notes -->
+  <div class="section">
+    <div class="section-header">
+      <h2>App Review Notes</h2>
+    </div>
+    <div class="review-notes">
+      <p>RollUp is a dual-sided marketplace for food truck discovery. Users can browse as "Food Lovers" (consumers) or "Truck Owners" (business). The app uses location services to show nearby food trucks on a map. Truck owners can subscribe via in-app purchases (Basic: $9.99/mo, Pro: $24.99/mo). Coupon redemptions include a 15% revenue share to the platform.</p>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <div class="footer-links">
+      <a href="#">App Support</a>
+      <a href="#">Privacy Policy</a>
+      <a href="#">Marketing Site</a>
+    </div>
+    <div class="copyright">&copy; 2026 RollUp Inc. All rights reserved.</div>
+  </div>
+
+</div>
+
+<script>
+  function toggleDesc() {
+    const short = document.getElementById('descShort');
+    const full = document.getElementById('descFull');
+    const toggle = document.getElementById('descToggle');
+    if (full.classList.contains('show')) {
+      full.classList.remove('show');
+      short.style.display = 'block';
+      toggle.textContent = 'more';
+    } else {
+      full.classList.add('show');
+      short.style.display = 'none';
+      toggle.textContent = 'less';
+    }
+  }
+</script>
+
+</body>
+</html>
