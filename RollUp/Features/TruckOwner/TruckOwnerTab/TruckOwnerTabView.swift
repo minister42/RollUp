@@ -5,35 +5,45 @@ struct TruckOwnerTabView: View {
 
     var body: some View {
         TabView(selection: $selectedTab) {
-            Tab("Dashboard", systemImage: "chart.bar.fill", value: 0) {
-                NavigationStack {
-                    OwnerDashboardView()
-                }
+            NavigationStack {
+                OwnerDashboardView()
             }
+            .tabItem {
+                Label("Dashboard", systemImage: "chart.bar.fill")
+            }
+            .tag(0)
 
-            Tab("Menu", systemImage: "menucard.fill", value: 1) {
-                NavigationStack {
-                    MenuManagementView()
-                }
+            NavigationStack {
+                MenuManagementView()
             }
+            .tabItem {
+                Label("Menu", systemImage: "menucard.fill")
+            }
+            .tag(1)
 
-            Tab("Coupons", systemImage: "ticket.fill", value: 2) {
-                NavigationStack {
-                    CouponManagementView()
-                }
+            NavigationStack {
+                CouponManagementView()
             }
+            .tabItem {
+                Label("Coupons", systemImage: "ticket.fill")
+            }
+            .tag(2)
 
-            Tab("Advertise", systemImage: "megaphone.fill", value: 3) {
-                NavigationStack {
-                    AdPackagesView()
-                }
+            NavigationStack {
+                AdPackagesView()
             }
+            .tabItem {
+                Label("Advertise", systemImage: "megaphone.fill")
+            }
+            .tag(3)
 
-            Tab("Profile", systemImage: "person.fill", value: 4) {
-                NavigationStack {
-                    OwnerProfileView()
-                }
+            NavigationStack {
+                OwnerProfileView()
             }
+            .tabItem {
+                Label("Profile", systemImage: "person.fill")
+            }
+            .tag(4)
         }
         .tint(.rollUpOrange)
     }

@@ -5,29 +5,37 @@ struct EaterTabView: View {
 
     var body: some View {
         TabView(selection: $selectedTab) {
-            Tab("Explore", systemImage: "magnifyingglass", value: 0) {
-                NavigationStack {
-                    ExploreView()
-                }
+            NavigationStack {
+                ExploreView()
             }
+            .tabItem {
+                Label("Explore", systemImage: "magnifyingglass")
+            }
+            .tag(0)
 
-            Tab("Map", systemImage: "map.fill", value: 1) {
-                NavigationStack {
-                    MapExploreView()
-                }
+            NavigationStack {
+                MapExploreView()
             }
+            .tabItem {
+                Label("Map", systemImage: "map.fill")
+            }
+            .tag(1)
 
-            Tab("Deals", systemImage: "ticket.fill", value: 2) {
-                NavigationStack {
-                    EaterCouponsView()
-                }
+            NavigationStack {
+                EaterCouponsView()
             }
+            .tabItem {
+                Label("Deals", systemImage: "ticket.fill")
+            }
+            .tag(2)
 
-            Tab("Profile", systemImage: "person.fill", value: 3) {
-                NavigationStack {
-                    EaterProfileView()
-                }
+            NavigationStack {
+                EaterProfileView()
             }
+            .tabItem {
+                Label("Profile", systemImage: "person.fill")
+            }
+            .tag(3)
         }
         .tint(.rollUpOrange)
     }

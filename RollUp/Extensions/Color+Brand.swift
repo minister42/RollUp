@@ -23,4 +23,9 @@ extension Color {
 extension ShapeStyle where Self == Color {
     static var rollUpOrange: Color { .rollUpOrange }
     static var rollUpRed: Color { .rollUpRed }
+    static var rollUpCharcoal: Color { .rollUpCharcoal }
+    static var rollUpCream: Color { .rollUpCream }
+    static var rollUpGreen: Color { .rollUpGreen }
+    static var rollUpGray: Color { .rollUpGray }
+    static var rollUpLightGray: Color { .rollUpLightGray }
 }
