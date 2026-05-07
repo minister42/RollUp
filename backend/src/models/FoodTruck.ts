@@ -143,7 +143,7 @@ const foodTruckSchema = new Schema<IFoodTruck>(
   {
     timestamps: true,
     toJSON: {
-      transform: (doc, ret) => {
+      transform: (_doc, ret: Record<string, any>) => {
         ret.id = ret._id;
         delete ret._id;
         delete ret.__v;

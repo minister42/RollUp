@@ -1,10 +1,10 @@
 import { Response } from 'express';
 import { User } from '../models/User';
 import { AuthRequest } from '../middleware/auth';
-import { asyncHandler, AppError } from '../middleware/errorHandler';
+import { AppError } from '../middleware/errorHandler';
 
 // Get current user
-export const getCurrentUser = asyncHandler(async (req: AuthRequest, res: Response) => {
+export const getCurrentUser = async (req: AuthRequest, res: Response) => {
   const userId = req.userId;
   
   const user = await User.findById(userId);
@@ -16,10 +16,10 @@ export const getCurrentUser = asyncHandler(async (req: AuthRequest, res: Respons
     success: true,
     data: user,
   });
-});
+};
 
 // Get user by ID
-export const getUserById = asyncHandler(async (req: AuthRequest, res: Response) => {
+export const getUserById = async (req: AuthRequest, res: Response) => {
   const { userId } = req.params;
   
   const user = await User.findById(userId);
@@ -31,10 +31,10 @@ export const getUserById = asyncHandler(async (req: AuthRequest, res: Response) 
     success: true,
     data: user,
   });
-});
+};
 
 // Update user profile
-export const updateUser = asyncHandler(async (req: AuthRequest, res: Response) => {
+export const updateUser = async (req: AuthRequest, res: Response) => {
   const { userId } = req.params;
   const currentUserId = req.userId;
   
@@ -66,10 +66,10 @@ export const updateUser = asyncHandler(async (req: AuthRequest, res: Response) =
     success: true,
     data: user,
   });
-});
+};
 
 // Delete user account
-export const deleteUser = asyncHandler(async (req: AuthRequest, res: Response) => {
+export const deleteUser = async (req: AuthRequest, res: Response) => {
   const { userId } = req.params;
   const currentUserId = req.userId;
   
@@ -87,4 +87,4 @@ export const deleteUser = asyncHandler(async (req: AuthRequest, res: Response) =
     success: true,
     message: 'Account deleted successfully',
   });
-});
+};

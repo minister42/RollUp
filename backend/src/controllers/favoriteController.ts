@@ -2,10 +2,10 @@ import { Response } from 'express';
 import { Favorite } from '../models/Favorite';
 import { FoodTruck } from '../models/FoodTruck';
 import { AuthRequest } from '../middleware/auth';
-import { asyncHandler, AppError } from '../middleware/errorHandler';
+import { AppError } from '../middleware/errorHandler';
 
 // Get user favorites
-export const getUserFavorites = asyncHandler(async (req: AuthRequest, res: Response) => {
+export const getUserFavorites = async (req: AuthRequest, res: Response) => {
   const { userId } = req.params;
   
   // Get favorite records
@@ -20,10 +20,10 @@ export const getUserFavorites = asyncHandler(async (req: AuthRequest, res: Respo
     success: true,
     data: trucks,
   });
-});
+};
 
 // Add favorite
-export const addFavorite = asyncHandler(async (req: AuthRequest, res: Response) => {
+export const addFavorite = async (req: AuthRequest, res: Response) => {
   const { userId, truckId } = req.params;
   const currentUserId = req.userId;
   
@@ -51,10 +51,10 @@ export const addFavorite = asyncHandler(async (req: AuthRequest, res: Response) 
     success: true,
     message: 'Truck added to favorites',
   });
-});
+};
 
 // Remove favorite
-export const removeFavorite = asyncHandler(async (req: AuthRequest, res: Response) => {
+export const removeFavorite = async (req: AuthRequest, res: Response) => {
   const { userId, truckId } = req.params;
   const currentUserId = req.userId;
   
@@ -73,4 +73,4 @@ export const removeFavorite = asyncHandler(async (req: AuthRequest, res: Respons
     success: true,
     message: 'Truck removed from favorites',
   });
-});
+};

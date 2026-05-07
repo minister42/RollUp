@@ -15,9 +15,9 @@ export class AppError extends Error {
 
 export const errorHandler = (
   err: Error | AppError,
-  req: Request,
+  _req: Request,
   res: Response,
-  next: NextFunction
+  _next: NextFunction
 ): void => {
   let statusCode = 500;
   let message = 'Internal server error';
@@ -48,11 +48,6 @@ export const errorHandler = (
   });
 };
 
-// Async error wrapper
-export const asyncHandler = (
-  fn: (req: Request, res: Response, next: NextFunction) => Promise<any>
-) => {
-  return (req: Request, res: Response, next: NextFunction) => {
-    Promise.resolve(fn(req, res, next)).catch(next);
-  };
-};
+// Note: As of Express 5, the framework automatically forwards rejected
+// promises from async route handlers to the error handler, so an
+// asyncHandler wrapper is no longer needed.

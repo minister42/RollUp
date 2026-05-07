@@ -1,21 +1,21 @@
 import { Response } from 'express';
 import { FoodTruck } from '../models/FoodTruck';
 import { AuthRequest } from '../middleware/auth';
-import { asyncHandler, AppError } from '../middleware/errorHandler';
+import { AppError } from '../middleware/errorHandler';
 import { UserRole } from '../models/User';
 
 // Get all trucks
-export const getAllTrucks = asyncHandler(async (req: AuthRequest, res: Response) => {
+export const getAllTrucks = async (_req: AuthRequest, res: Response) => {
   const trucks = await FoodTruck.find().sort({ createdAt: -1 });
   
   res.status(200).json({
     success: true,
     data: trucks,
   });
-});
+};
 
 // Get single truck
-export const getTruck = asyncHandler(async (req: AuthRequest, res: Response) => {
+export const getTruck = async (req: AuthRequest, res: Response) => {
   const { truckId } = req.params;
   
   const truck = await FoodTruck.findById(truckId);
@@ -27,10 +27,10 @@ export const getTruck = asyncHandler(async (req: AuthRequest, res: Response) => 
     success: true,
     data: truck,
   });
-});
+};
 
 // Create truck
-export const createTruck = asyncHandler(async (req: AuthRequest, res: Response) => {
+export const createTruck = async (req: AuthRequest, res: Response) => {
   const userId = req.userId;
   const user = req.user;
   
@@ -68,10 +68,10 @@ export const createTruck = asyncHandler(async (req: AuthRequest, res: Response) 
     success: true,
     data: truck,
   });
-});
+};
 
 // Update truck
-export const updateTruck = asyncHandler(async (req: AuthRequest, res: Response) => {
+export const updateTruck = async (req: AuthRequest, res: Response) => {
   const { truckId } = req.params;
   const userId = req.userId;
   
@@ -119,10 +119,10 @@ export const updateTruck = asyncHandler(async (req: AuthRequest, res: Response) 
     success: true,
     data: updatedTruck,
   });
-});
+};
 
 // Delete truck
-export const deleteTruck = asyncHandler(async (req: AuthRequest, res: Response) => {
+export const deleteTruck = async (req: AuthRequest, res: Response) => {
   const { truckId } = req.params;
   const userId = req.userId;
   
@@ -143,10 +143,10 @@ export const deleteTruck = asyncHandler(async (req: AuthRequest, res: Response) 
     success: true,
     message: 'Truck deleted successfully',
   });
-});
+};
 
 // Get trucks by owner
-export const getTrucksByOwner = asyncHandler(async (req: AuthRequest, res: Response) => {
+export const getTrucksByOwner = async (req: AuthRequest, res: Response) => {
   const { ownerId } = req.params;
   
   const trucks = await FoodTruck.find({ ownerId }).sort({ createdAt: -1 });
@@ -155,11 +155,13 @@ export const getTrucksByOwner = asyncHandler(async (req: AuthRequest, res: Respo
     success: true,
     data: trucks,
   });
-});
+};
 
 // Search trucks
-export const searchTrucks = asyncHandler(async (req: AuthRequest, res: Response) => {
-  const { q: query, location } = req.query;
+export const searchTrucks = async (req: AuthRequest, res: Response) => {
+  // `location` is read from req.query for future geospatial search;
+  // currently unused but kept in the API contract.
+  const { q: query } = req.query;
   
   const searchQuery: any = {};
   
@@ -176,4 +178,4 @@ export const searchTrucks = asyncHandler(async (req: AuthRequest, res: Response)
     success: true,
     data: trucks,
   });
-});
+};

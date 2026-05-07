@@ -1,10 +1,10 @@
 import { Request, Response } from 'express';
 import { User } from '../models/User';
-import { asyncHandler, AppError } from '../middleware/errorHandler';
+import { AppError } from '../middleware/errorHandler';
 import { generateAccessToken, generateRefreshToken, verifyRefreshToken } from '../utils/jwt';
 
 // Sign Up
-export const signUp = asyncHandler(async (req: Request, res: Response) => {
+export const signUp = async (req: Request, res: Response) => {
   const { email, password, displayName, role } = req.body;
   
   // Validate input
@@ -42,10 +42,10 @@ export const signUp = asyncHandler(async (req: Request, res: Response) => {
       refreshToken,
     },
   });
-});
+};
 
 // Sign In
-export const signIn = asyncHandler(async (req: Request, res: Response) => {
+export const signIn = async (req: Request, res: Response) => {
   const { email, password } = req.body;
   
   // Validate input
@@ -81,10 +81,10 @@ export const signIn = asyncHandler(async (req: Request, res: Response) => {
       refreshToken,
     },
   });
-});
+};
 
 // Sign Out
-export const signOut = asyncHandler(async (req: Request, res: Response) => {
+export const signOut = async (req: Request, res: Response) => {
   const userId = (req as any).userId;
   
   // Remove refresh token
@@ -94,10 +94,10 @@ export const signOut = asyncHandler(async (req: Request, res: Response) => {
     success: true,
     message: 'Signed out successfully',
   });
-});
+};
 
 // Refresh Token
-export const refreshToken = asyncHandler(async (req: Request, res: Response) => {
+export const refreshToken = async (req: Request, res: Response) => {
   const { refreshToken } = req.body;
   
   if (!refreshToken) {
@@ -138,4 +138,4 @@ export const refreshToken = asyncHandler(async (req: Request, res: Response) => 
   } catch (error) {
     throw new AppError('Invalid or expired refresh token', 401);
   }
-});
+};

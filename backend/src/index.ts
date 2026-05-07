@@ -42,7 +42,7 @@ if (process.env.NODE_ENV === 'development') {
 app.use(rateLimiter);
 
 // Health check endpoint
-app.get('/health', (req, res) => {
+app.get('/health', (_req, res) => {
   res.status(200).json({
     status: 'OK',
     timestamp: new Date().toISOString(),
@@ -54,7 +54,7 @@ app.get('/health', (req, res) => {
 app.use(`/${API_VERSION}`, routes);
 
 // 404 handler
-app.use((req, res) => {
+app.use((_req, res) => {
   res.status(404).json({
     success: false,
     message: 'Route not found',

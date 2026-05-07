@@ -2,10 +2,10 @@ import { Response } from 'express';
 import { Review } from '../models/Review';
 import { FoodTruck } from '../models/FoodTruck';
 import { AuthRequest } from '../middleware/auth';
-import { asyncHandler, AppError } from '../middleware/errorHandler';
+import { AppError } from '../middleware/errorHandler';
 
 // Get truck reviews
-export const getTruckReviews = asyncHandler(async (req: AuthRequest, res: Response) => {
+export const getTruckReviews = async (req: AuthRequest, res: Response) => {
   const { truckId } = req.params;
   
   const reviews = await Review.find({ truckId }).sort({ createdAt: -1 });
@@ -14,10 +14,10 @@ export const getTruckReviews = asyncHandler(async (req: AuthRequest, res: Respon
     success: true,
     data: reviews,
   });
-});
+};
 
 // Create review
-export const createReview = asyncHandler(async (req: AuthRequest, res: Response) => {
+export const createReview = async (req: AuthRequest, res: Response) => {
   const { truckId } = req.params;
   const userId = req.userId;
   const user = req.user;
@@ -54,10 +54,10 @@ export const createReview = asyncHandler(async (req: AuthRequest, res: Response)
     success: true,
     data: review,
   });
-});
+};
 
 // Update review
-export const updateReview = asyncHandler(async (req: AuthRequest, res: Response) => {
+export const updateReview = async (req: AuthRequest, res: Response) => {
   const { reviewId } = req.params;
   const userId = req.userId;
   const { rating, comment } = req.body;
@@ -94,10 +94,10 @@ export const updateReview = asyncHandler(async (req: AuthRequest, res: Response)
     success: true,
     data: updatedReview,
   });
-});
+};
 
 // Delete review
-export const deleteReview = asyncHandler(async (req: AuthRequest, res: Response) => {
+export const deleteReview = async (req: AuthRequest, res: Response) => {
   const { reviewId } = req.params;
   const userId = req.userId;
   
@@ -118,4 +118,4 @@ export const deleteReview = asyncHandler(async (req: AuthRequest, res: Response)
     success: true,
     message: 'Review deleted successfully',
   });
-});
+};
