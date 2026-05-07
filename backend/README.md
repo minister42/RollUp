@@ -15,7 +15,7 @@ A complete REST API backend for the Food Truck mobile application built with Nod
 
 ## 📋 Prerequisites
 
-- Node.js (v18 or higher)
+- Node.js (v20 or higher — LTS)
 - MongoDB (v5 or higher) - local or MongoDB Atlas
 - npm or yarn
 

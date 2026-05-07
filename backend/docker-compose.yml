@@ -1,9 +1,7 @@
-version: '3.8'
-
 services:
   # MongoDB Database
   mongodb:
-    image: mongo:7.0
+    image: mongo:8.0
     container_name: foodtruck-mongodb
     restart: unless-stopped
     environment:

@@ -57,7 +57,7 @@ I've built a **complete, production-ready backend** for your Food Truck app!
 
 ## 🚀 Tech Stack
 
-- **Runtime**: Node.js 18+
+- **Runtime**: Node.js 20+ (LTS)
 - **Language**: TypeScript
 - **Framework**: Express.js
 - **Database**: MongoDB with Mongoose ODM
