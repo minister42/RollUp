@@ -19,15 +19,22 @@ services:
     container_name: foodtruck-api
     restart: unless-stopped
     ports:
-      - "3000:3000"
+      - "${PORT:-3000}:3000"
+    # Compose reads variables from a sibling `.env` file automatically.
+    # Copy `.env.example` to `.env` and fill in real secrets — never
+    # commit `.env`. The `:?` suffix makes JWT secrets *required*: the
+    # stack refuses to start if they are unset, preventing the old
+    # placeholder defaults from ever shipping.
+    env_file:
+      - .env
     environment:
-      NODE_ENV: development
-      PORT: 3000
-      MONGODB_URI: mongodb://mongodb:27017/foodtruck-app
-      JWT_SECRET: dev-jwt-secret-change-in-production
-      JWT_REFRESH_SECRET: dev-refresh-secret-change-in-production
-      JWT_EXPIRES_IN: 1h
-      JWT_REFRESH_EXPIRES_IN: 7d
+      NODE_ENV: ${NODE_ENV:-development}
+      PORT: ${PORT:-3000}
+      MONGODB_URI: ${MONGODB_URI:-mongodb://mongodb:27017/foodtruck-app}
+      JWT_SECRET: ${JWT_SECRET:?JWT_SECRET must be set in .env}
+      JWT_REFRESH_SECRET: ${JWT_REFRESH_SECRET:?JWT_REFRESH_SECRET must be set in .env}
+      JWT_EXPIRES_IN: ${JWT_EXPIRES_IN:-1h}
+      JWT_REFRESH_EXPIRES_IN: ${JWT_REFRESH_EXPIRES_IN:-7d}
     depends_on:
       - mongodb
     volumes:
