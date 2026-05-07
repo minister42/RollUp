@@ -1,0 +1,47 @@
+version: '3.8'
+
+services:
+  # MongoDB Database
+  mongodb:
+    image: mongo:7.0
+    container_name: foodtruck-mongodb
+    restart: unless-stopped
+    environment:
+      MONGO_INITDB_DATABASE: foodtruck-app
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb_data:/data/db
+    networks:
+      - foodtruck-network
+
+  # Backend API
+  api:
+    build: .
+    container_name: foodtruck-api
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    environment:
+      NODE_ENV: development
+      PORT: 3000
+      MONGODB_URI: mongodb://mongodb:27017/foodtruck-app
+      JWT_SECRET: dev-jwt-secret-change-in-production
+      JWT_REFRESH_SECRET: dev-refresh-secret-change-in-production
+      JWT_EXPIRES_IN: 1h
+      JWT_REFRESH_EXPIRES_IN: 7d
+    depends_on:
+      - mongodb
+    volumes:
+      - ./src:/app/src
+      - /app/node_modules
+    networks:
+      - foodtruck-network
+    command: npm run dev
+
+volumes:
+  mongodb_data:
+
+networks:
+  foodtruck-network:
+    driver: bridge

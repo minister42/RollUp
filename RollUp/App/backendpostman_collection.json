@@ -1,0 +1,332 @@
+{
+  "info": {
+    "name": "Food Truck API",
+    "description": "Complete API collection for Food Truck backend",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:3000/v1"
+    },
+    {
+      "key": "access_token",
+      "value": ""
+    }
+  ],
+  "item": [
+    {
+      "name": "Authentication",
+      "item": [
+        {
+          "name": "Sign Up",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"newuser@example.com\",\n  \"password\": \"password123\",\n  \"displayName\": \"New User\",\n  \"role\": \"eater\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/auth/signup",
+              "host": ["{{base_url}}"],
+              "path": ["auth", "signup"]
+            }
+          }
+        },
+        {
+          "name": "Sign In",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "if (pm.response.code === 200) {",
+                  "    const response = pm.response.json();",
+                  "    pm.collectionVariables.set('access_token', response.data.accessToken);",
+                  "}"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"alex@example.com\",\n  \"password\": \"password123\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/auth/signin",
+              "host": ["{{base_url}}"],
+              "path": ["auth", "signin"]
+            }
+          }
+        },
+        {
+          "name": "Sign Out",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/auth/signout",
+              "host": ["{{base_url}}"],
+              "path": ["auth", "signout"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Users",
+      "item": [
+        {
+          "name": "Get Current User",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/users/me",
+              "host": ["{{base_url}}"],
+              "path": ["users", "me"]
+            }
+          }
+        },
+        {
+          "name": "Update Profile",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"displayName\": \"Updated Name\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/users/:userId",
+              "host": ["{{base_url}}"],
+              "path": ["users", ":userId"],
+              "variable": [
+                {
+                  "key": "userId",
+                  "value": "YOUR_USER_ID"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Trucks",
+      "item": [
+        {
+          "name": "Get All Trucks",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/trucks",
+              "host": ["{{base_url}}"],
+              "path": ["trucks"]
+            }
+          }
+        },
+        {
+          "name": "Get Single Truck",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/trucks/:truckId",
+              "host": ["{{base_url}}"],
+              "path": ["trucks", ":truckId"],
+              "variable": [
+                {
+                  "key": "truckId",
+                  "value": "TRUCK_ID"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Create Truck",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"My Food Truck\",\n  \"description\": \"Delicious food on wheels\",\n  \"cuisineType\": \"Mexican\",\n  \"coordinate\": {\n    \"latitude\": 37.7749,\n    \"longitude\": -122.4194\n  }\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/trucks",
+              "host": ["{{base_url}}"],
+              "path": ["trucks"]
+            }
+          }
+        },
+        {
+          "name": "Search Trucks",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/trucks/search?q=tacos",
+              "host": ["{{base_url}}"],
+              "path": ["trucks", "search"],
+              "query": [
+                {
+                  "key": "q",
+                  "value": "tacos"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Reviews",
+      "item": [
+        {
+          "name": "Get Truck Reviews",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/trucks/:truckId/reviews",
+              "host": ["{{base_url}}"],
+              "path": ["trucks", ":truckId", "reviews"],
+              "variable": [
+                {
+                  "key": "truckId",
+                  "value": "TRUCK_ID"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Create Review",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"rating\": 5,\n  \"comment\": \"Amazing food!\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/trucks/:truckId/reviews",
+              "host": ["{{base_url}}"],
+              "path": ["trucks", ":truckId", "reviews"],
+              "variable": [
+                {
+                  "key": "truckId",
+                  "value": "TRUCK_ID"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Favorites",
+      "item": [
+        {
+          "name": "Get User Favorites",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/users/:userId/favorites",
+              "host": ["{{base_url}}"],
+              "path": ["users", ":userId", "favorites"],
+              "variable": [
+                {
+                  "key": "userId",
+                  "value": "USER_ID"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Add Favorite",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/users/:userId/favorites/:truckId",
+              "host": ["{{base_url}}"],
+              "path": ["users", ":userId", "favorites", ":truckId"],
+              "variable": [
+                {
+                  "key": "userId",
+                  "value": "USER_ID"
+                },
+                {
+                  "key": "truckId",
+                  "value": "TRUCK_ID"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

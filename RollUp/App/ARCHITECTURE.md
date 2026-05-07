@@ -1,0 +1,227 @@
+# Backend Architecture Diagram
+
+```
+┌─────────────────────────────────────────────────────────────────┐
+│                         SwiftUI Views                           │
+│  (ExploreView, ProfileView, TruckDetailView, etc.)             │
+└────────────────────────┬────────────────────────────────────────┘
+                         │
+                         │ @EnvironmentObject / @StateObject
+                         │
+┌────────────────────────┴────────────────────────────────────────┐
+│                       AppState                                  │
+│  • currentUser: User?                                          │
+│  • isAuthenticated: Bool                                       │
+│  • signIn(email:password:)                                     │
+│  • signUp(...)                                                 │
+│  • signOut()                                                   │
+└────────────────────────┬────────────────────────────────────────┘
+                         │
+                         │ Uses
+                         │
+┌────────────────────────┴────────────────────────────────────────┐
+│                     Service Layer                               │
+│  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐         │
+│  │ AuthService  │  │ UserService  │  │TruckService  │         │
+│  │              │  │              │  │              │         │
+│  │ • signIn()   │  │ • getUser()  │  │ • getAll()   │         │
+│  │ • signUp()   │  │ • update()   │  │ • create()   │         │
+│  │ • signOut()  │  │ • delete()   │  │ • search()   │         │
+│  └──────────────┘  └──────────────┘  └──────────────┘         │
+│                                                                  │
+│  ┌──────────────┐  ┌──────────────┐                           │
+│  │ReviewService │  │FavoriteService│                           │
+│  │              │  │              │                            │
+│  │ • getReviews │  │ • getFavs()  │                           │
+│  │ • create()   │  │ • add()      │                           │
+│  │ • update()   │  │ • remove()   │                           │
+│  └──────────────┘  └──────────────┘                           │
+└────────────────────────┬────────────────────────────────────────┘
+                         │
+                         │ Uses
+                         │
+┌────────────────────────┴────────────────────────────────────────┐
+│                      APIClient                                  │
+│  • request<T>(endpoint:) async throws -> T                     │
+│  • setAccessToken(_:)                                          │
+│  • loadSavedToken()                                            │
+│                                                                  │
+│  Responsibilities:                                              │
+│  ✓ HTTP communication                                          │
+│  ✓ Token management                                            │
+│  ✓ Request building                                            │
+│  ✓ Response parsing                                            │
+│  ✓ Error handling                                              │
+└────────────────────────┬────────────────────────────────────────┘
+                         │
+                         │ Uses
+                         │
+┌────────────────────────┴────────────────────────────────────────┐
+│                   API Configuration                             │
+│  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐         │
+│  │APIEndpoints  │  │  APIModels   │  │  APIError    │         │
+│  │              │  │              │  │              │         │
+│  │ • Auth       │  │ • SignIn     │  │ • invalid    │         │
+│  │ • User       │  │   Request    │  │   Response   │         │
+│  │ • Trucks     │  │ • Auth       │  │ • network    │         │
+│  │ • Reviews    │  │   Response   │  │   Error      │         │
+│  │ • Favorites  │  │ • etc...     │  │ • etc...     │         │
+│  └──────────────┘  └──────────────┘  └──────────────┘         │
+│                                                                  │
+│  ┌────────────────────────────────┐                            │
+│  │    APIConfiguration            │                            │
+│  │  • Environment (dev/staging/   │                            │
+│  │    production)                 │                            │
+│  │  • baseURL                     │                            │
+│  │  • timeout                     │                            │
+│  │  • enableLogging               │                            │
+│  └────────────────────────────────┘                            │
+└────────────────────────┬────────────────────────────────────────┘
+                         │
+                         │ HTTP/HTTPS
+                         │
+┌────────────────────────┴────────────────────────────────────────┐
+│                    Backend API Server                           │
+│                                                                  │
+│  Endpoints:                                                     │
+│  • POST   /auth/signin                                         │
+│  • POST   /auth/signup                                         │
+│  • GET    /users/me                                            │
+│  • GET    /trucks                                              │
+│  • POST   /trucks                                              │
+│  • GET    /trucks/:id/reviews                                  │
+│  • POST   /users/:id/favorites/:truckId                        │
+│  • ... and more                                                │
+└─────────────────────────────────────────────────────────────────┘
+```
+
+## Data Flow Examples
+
+### Example 1: User Signs In
+
+```
+┌──────────────┐
+│   LoginView  │
+└──────┬───────┘
+       │ 1. User taps "Sign In"
+       │
+       ▼
+┌──────────────┐
+│   AppState   │ await signIn(email, password)
+└──────┬───────┘
+       │ 2. Calls AuthService
+       │
+       ▼
+┌──────────────┐
+│ AuthService  │ signIn(email, password)
+└──────┬───────┘
+       │ 3. Creates endpoint
+       │
+       ▼
+┌──────────────┐
+│  APIClient   │ request(endpoint: .signIn)
+└──────┬───────┘
+       │ 4. Makes HTTP POST request
+       │
+       ▼
+┌──────────────┐
+│ Backend API  │ POST /auth/signin
+└──────┬───────┘
+       │ 5. Returns AuthResponse
+       │
+       ▼
+┌──────────────┐
+│  APIClient   │ Decodes JSON to AuthResponse
+└──────┬───────┘
+       │ 6. Returns to service
+       │
+       ▼
+┌──────────────┐
+│ AuthService  │ Saves tokens
+└──────┬───────┘
+       │ 7. Returns to AppState
+       │
+       ▼
+┌──────────────┐
+│   AppState   │ Updates currentUser, isAuthenticated
+└──────┬───────┘
+       │ 8. UI updates automatically
+       │
+       ▼
+┌──────────────┐
+│   LoginView  │ Shows authenticated state
+└──────────────┘
+```
+
+### Example 2: Fetch All Trucks
+
+```
+┌──────────────┐
+│ ExploreView  │
+└──────┬───────┘
+       │ 1. onAppear
+       │
+       ▼
+┌──────────────┐
+│TruckService  │ getAllTrucks()
+└──────┬───────┘
+       │ 2. Creates endpoint
+       │
+       ▼
+┌──────────────┐
+│  APIClient   │ request(endpoint: .getAllTrucks)
+└──────┬───────┘
+       │ 3. Makes HTTP GET with auth token
+       │
+       ▼
+┌──────────────┐
+│ Backend API  │ GET /trucks (with Bearer token)
+└──────┬───────┘
+       │ 4. Returns [FoodTruck]
+       │
+       ▼
+┌──────────────┐
+│  APIClient   │ Decodes JSON to [FoodTruck]
+└──────┬───────┘
+       │ 5. Returns array
+       │
+       ▼
+┌──────────────┐
+│TruckService  │ Returns to view
+└──────┬───────┘
+       │ 6. Updates @State
+       │
+       ▼
+┌──────────────┐
+│ ExploreView  │ Displays trucks in List
+└──────────────┘
+```
+
+## Key Design Principles
+
+### 1. Separation of Concerns
+- **Views**: Only UI logic
+- **AppState**: App-wide state management
+- **Services**: Business logic + API calls
+- **APIClient**: Pure networking
+- **Endpoints**: API contract definitions
+
+### 2. Type Safety
+- Every endpoint is strongly typed
+- Request/response models are explicit
+- Compile-time safety for API calls
+
+### 3. Testability
+- Each layer can be tested independently
+- Mock implementations available
+- Services can use dependency injection
+
+### 4. Scalability
+- Easy to add new endpoints
+- Easy to add new services
+- Environment configuration centralized
+
+### 5. Error Handling
+- Errors bubble up through layers
+- Localized error messages
+- Specific error types for different scenarios
