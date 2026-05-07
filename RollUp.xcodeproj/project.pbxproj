@@ -29,17 +29,6 @@
 		1D8D9A7B2F780F9500428737 /* ARCHITECTURE.md in Resources */ = {isa = PBXBuildFile; fileRef = 1D8D9A7A2F780F9500428737 /* ARCHITECTURE.md */; };
 		1D8D9A7D2F780FA400428737 /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D8D9A7C2F780FA400428737 /* NetworkMonitor.swift */; };
 		1D8D9A7F2F780FCA00428737 /* BACKEND_CHECKLIST.md in Resources */ = {isa = PBXBuildFile; fileRef = 1D8D9A7E2F780FCA00428737 /* BACKEND_CHECKLIST.md */; };
-		1D8D9A812F78132400428737 /* backendpackage.json in Resources */ = {isa = PBXBuildFile; fileRef = 1D8D9A802F78132400428737 /* backendpackage.json */; };
-		1D8D9A832F78132800428737 /* backendtsconfig.json in Resources */ = {isa = PBXBuildFile; fileRef = 1D8D9A822F78132800428737 /* backendtsconfig.json */; };
-		1D8D9A852F78132D00428737 /* backend.env.example in Resources */ = {isa = PBXBuildFile; fileRef = 1D8D9A842F78132D00428737 /* backend.env.example */; };
-		1D8D9A872F78133000428737 /* backend.gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 1D8D9A862F78133000428737 /* backend.gitignore */; };
-		1D8D9A9E2F78141C00428737 /* backendREADME.md in Resources */ = {isa = PBXBuildFile; fileRef = 1D8D9A9D2F78141C00428737 /* backendREADME.md */; };
-		1D8D9AA12F78144700428737 /* backendQUICKSTART.md in Resources */ = {isa = PBXBuildFile; fileRef = 1D8D9AA02F78144700428737 /* backendQUICKSTART.md */; };
-		1D8D9AA32F78146000428737 /* backendpostman_collection.json in Resources */ = {isa = PBXBuildFile; fileRef = 1D8D9AA22F78146000428737 /* backendpostman_collection.json */; };
-		1D8D9AA52F78146700428737 /* backenddocker-compose.yml in Resources */ = {isa = PBXBuildFile; fileRef = 1D8D9AA42F78146700428737 /* backenddocker-compose.yml */; };
-		1D8D9AA72F78146A00428737 /* backendDockerfile in Resources */ = {isa = PBXBuildFile; fileRef = 1D8D9AA62F78146A00428737 /* backendDockerfile */; };
-		1D8D9AA92F7814A000428737 /* backendBACKEND_COMPLETE.md in Resources */ = {isa = PBXBuildFile; fileRef = 1D8D9AA82F7814A000428737 /* backendBACKEND_COMPLETE.md */; };
-		1D8D9AAB2F7814CC00428737 /* backendDEV_TIPS.md in Resources */ = {isa = PBXBuildFile; fileRef = 1D8D9AAA2F7814CC00428737 /* backendDEV_TIPS.md */; };
 		2669841342330A7BD42FCF95 /* SocialLinksView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B23FCE576F6B2454112D5A1 /* SocialLinksView.swift */; };
 		2FF433190ECD7D6198AAFC21 /* DirectionsButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA3DB4E1CF15A797342445A2 /* DirectionsButton.swift */; };
 		32D06D2A055EA71ED5FD69B4 /* CuisineType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ADD863B2053383EB8F75950 /* CuisineType.swift */; };
@@ -117,39 +106,6 @@
 		1D8D9A7A2F780F9500428737 /* ARCHITECTURE.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = ARCHITECTURE.md; sourceTree = "<group>"; };
 		1D8D9A7C2F780FA400428737 /* NetworkMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
 		1D8D9A7E2F780FCA00428737 /* BACKEND_CHECKLIST.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = BACKEND_CHECKLIST.md; sourceTree = "<group>"; };
-		1D8D9A802F78132400428737 /* backendpackage.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = backendpackage.json; sourceTree = "<group>"; };
-		1D8D9A822F78132800428737 /* backendtsconfig.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = backendtsconfig.json; sourceTree = "<group>"; };
-		1D8D9A842F78132D00428737 /* backend.env.example */ = {isa = PBXFileReference; lastKnownFileType = text; path = backend.env.example; sourceTree = "<group>"; };
-		1D8D9A862F78133000428737 /* backend.gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = backend.gitignore; sourceTree = "<group>"; };
-		1D8D9A882F78133900428737 /* backendsrcindex.ts */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.typescript; path = backendsrcindex.ts; sourceTree = "<group>"; };
-		1D8D9A892F78133F00428737 /* backendsrcconfigdatabase.ts */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.typescript; path = backendsrcconfigdatabase.ts; sourceTree = "<group>"; };
-		1D8D9A8A2F78134B00428737 /* backendsrcmodelsUser.ts */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.typescript; path = backendsrcmodelsUser.ts; sourceTree = "<group>"; };
-		1D8D9A8B2F78135900428737 /* backendsrcmodelsFoodTruck.ts */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.typescript; path = backendsrcmodelsFoodTruck.ts; sourceTree = "<group>"; };
-		1D8D9A8C2F78136500428737 /* backendsrcmodelsReview.ts */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.typescript; path = backendsrcmodelsReview.ts; sourceTree = "<group>"; };
-		1D8D9A8D2F78136A00428737 /* backendsrcmodelsFavorite.ts */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.typescript; path = backendsrcmodelsFavorite.ts; sourceTree = "<group>"; };
-		1D8D9A8E2F78137400428737 /* backendsrcmiddlewareauth.ts */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.typescript; path = backendsrcmiddlewareauth.ts; sourceTree = "<group>"; };
-		1D8D9A8F2F78137C00428737 /* backendsrcmiddlewareerrorHandler.ts */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.typescript; path = backendsrcmiddlewareerrorHandler.ts; sourceTree = "<group>"; };
-		1D8D9A902F78138500428737 /* backendsrcmiddlewarerateLimiter.ts */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.typescript; path = backendsrcmiddlewarerateLimiter.ts; sourceTree = "<group>"; };
-		1D8D9A912F78138B00428737 /* backendsrcutilsjwt.ts */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.typescript; path = backendsrcutilsjwt.ts; sourceTree = "<group>"; };
-		1D8D9A922F78139800428737 /* backendsrccontrollersauthController.ts */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.typescript; path = backendsrccontrollersauthController.ts; sourceTree = "<group>"; };
-		1D8D9A932F7813A100428737 /* backendsrccontrollersuserController.ts */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.typescript; path = backendsrccontrollersuserController.ts; sourceTree = "<group>"; };
-		1D8D9A942F7813B200428737 /* backendsrccontrollerstruckController.ts */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.typescript; path = backendsrccontrollerstruckController.ts; sourceTree = "<group>"; };
-		1D8D9A952F7813C400428737 /* backendsrccontrollersreviewController.ts */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.typescript; path = backendsrccontrollersreviewController.ts; sourceTree = "<group>"; };
-		1D8D9A962F7813CE00428737 /* backendsrccontrollersfavoriteController.ts */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.typescript; path = backendsrccontrollersfavoriteController.ts; sourceTree = "<group>"; };
-		1D8D9A972F7813D200428737 /* backendsrcroutesauthRoutes.ts */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.typescript; path = backendsrcroutesauthRoutes.ts; sourceTree = "<group>"; };
-		1D8D9A982F7813D600428737 /* backendsrcroutesuserRoutes.ts */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.typescript; path = backendsrcroutesuserRoutes.ts; sourceTree = "<group>"; };
-		1D8D9A992F7813DF00428737 /* backendsrcroutestruckRoutes.ts */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.typescript; path = backendsrcroutestruckRoutes.ts; sourceTree = "<group>"; };
-		1D8D9A9A2F7813E600428737 /* backendsrcroutesreviewRoutes.ts */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.typescript; path = backendsrcroutesreviewRoutes.ts; sourceTree = "<group>"; };
-		1D8D9A9B2F7813EA00428737 /* backendsrcroutesfavoriteRoutes.ts */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.typescript; path = backendsrcroutesfavoriteRoutes.ts; sourceTree = "<group>"; };
-		1D8D9A9C2F7813F100428737 /* backendsrcroutesindex.ts */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.typescript; path = backendsrcroutesindex.ts; sourceTree = "<group>"; };
-		1D8D9A9D2F78141C00428737 /* backendREADME.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = backendREADME.md; sourceTree = "<group>"; };
-		1D8D9A9F2F78143200428737 /* backendsrcscriptsseed.ts */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.typescript; path = backendsrcscriptsseed.ts; sourceTree = "<group>"; };
-		1D8D9AA02F78144700428737 /* backendQUICKSTART.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = backendQUICKSTART.md; sourceTree = "<group>"; };
-		1D8D9AA22F78146000428737 /* backendpostman_collection.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = backendpostman_collection.json; sourceTree = "<group>"; };
-		1D8D9AA42F78146700428737 /* backenddocker-compose.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = "backenddocker-compose.yml"; sourceTree = "<group>"; };
-		1D8D9AA62F78146A00428737 /* backendDockerfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = backendDockerfile; sourceTree = "<group>"; };
-		1D8D9AA82F7814A000428737 /* backendBACKEND_COMPLETE.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = backendBACKEND_COMPLETE.md; sourceTree = "<group>"; };
-		1D8D9AAA2F7814CC00428737 /* backendDEV_TIPS.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = backendDEV_TIPS.md; sourceTree = "<group>"; };
 		1F4E782AEAA3538C712AD835 /* AdPackagesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdPackagesView.swift; sourceTree = "<group>"; };
 		28CF0A10448B71E1A8FC5DCB /* BadgeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgeView.swift; sourceTree = "<group>"; };
 		3557CB3C906F85B7250017DA /* SectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionHeader.swift; sourceTree = "<group>"; };
@@ -317,39 +273,6 @@
 				1D8D9A7A2F780F9500428737 /* ARCHITECTURE.md */,
 				1D8D9A7C2F780FA400428737 /* NetworkMonitor.swift */,
 				1D8D9A7E2F780FCA00428737 /* BACKEND_CHECKLIST.md */,
-				1D8D9A802F78132400428737 /* backendpackage.json */,
-				1D8D9A822F78132800428737 /* backendtsconfig.json */,
-				1D8D9A842F78132D00428737 /* backend.env.example */,
-				1D8D9A862F78133000428737 /* backend.gitignore */,
-				1D8D9A882F78133900428737 /* backendsrcindex.ts */,
-				1D8D9A892F78133F00428737 /* backendsrcconfigdatabase.ts */,
-				1D8D9A8A2F78134B00428737 /* backendsrcmodelsUser.ts */,
-				1D8D9A8B2F78135900428737 /* backendsrcmodelsFoodTruck.ts */,
-				1D8D9A8C2F78136500428737 /* backendsrcmodelsReview.ts */,
-				1D8D9A8D2F78136A00428737 /* backendsrcmodelsFavorite.ts */,
-				1D8D9A8E2F78137400428737 /* backendsrcmiddlewareauth.ts */,
-				1D8D9A8F2F78137C00428737 /* backendsrcmiddlewareerrorHandler.ts */,
-				1D8D9A902F78138500428737 /* backendsrcmiddlewarerateLimiter.ts */,
-				1D8D9A912F78138B00428737 /* backendsrcutilsjwt.ts */,
-				1D8D9A922F78139800428737 /* backendsrccontrollersauthController.ts */,
-				1D8D9A932F7813A100428737 /* backendsrccontrollersuserController.ts */,
-				1D8D9A942F7813B200428737 /* backendsrccontrollerstruckController.ts */,
-				1D8D9A952F7813C400428737 /* backendsrccontrollersreviewController.ts */,
-				1D8D9A962F7813CE00428737 /* backendsrccontrollersfavoriteController.ts */,
-				1D8D9A972F7813D200428737 /* backendsrcroutesauthRoutes.ts */,
-				1D8D9A982F7813D600428737 /* backendsrcroutesuserRoutes.ts */,
-				1D8D9A992F7813DF00428737 /* backendsrcroutestruckRoutes.ts */,
-				1D8D9A9A2F7813E600428737 /* backendsrcroutesreviewRoutes.ts */,
-				1D8D9A9B2F7813EA00428737 /* backendsrcroutesfavoriteRoutes.ts */,
-				1D8D9A9C2F7813F100428737 /* backendsrcroutesindex.ts */,
-				1D8D9A9D2F78141C00428737 /* backendREADME.md */,
-				1D8D9A9F2F78143200428737 /* backendsrcscriptsseed.ts */,
-				1D8D9AA02F78144700428737 /* backendQUICKSTART.md */,
-				1D8D9AA22F78146000428737 /* backendpostman_collection.json */,
-				1D8D9AA42F78146700428737 /* backenddocker-compose.yml */,
-				1D8D9AA62F78146A00428737 /* backendDockerfile */,
-				1D8D9AA82F7814A000428737 /* backendBACKEND_COMPLETE.md */,
-				1D8D9AAA2F7814CC00428737 /* backendDEV_TIPS.md */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -725,20 +648,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				1D8D9A7F2F780FCA00428737 /* BACKEND_CHECKLIST.md in Resources */,
-				1D8D9AA92F7814A000428737 /* backendBACKEND_COMPLETE.md in Resources */,
-				1D8D9A852F78132D00428737 /* backend.env.example in Resources */,
-				1D8D9A832F78132800428737 /* backendtsconfig.json in Resources */,
 				1D8D9A772F780F5A00428737 /* BACKEND_SUMMARY.md in Resources */,
-				1D8D9AA52F78146700428737 /* backenddocker-compose.yml in Resources */,
 				1D8D9A732F780F2200428737 /* BACKEND_README.md in Resources */,
-				1D8D9A812F78132400428737 /* backendpackage.json in Resources */,
-				1D8D9AA32F78146000428737 /* backendpostman_collection.json in Resources */,
-				1D8D9A9E2F78141C00428737 /* backendREADME.md in Resources */,
 				1D8D9A7B2F780F9500428737 /* ARCHITECTURE.md in Resources */,
-				1D8D9AA12F78144700428737 /* backendQUICKSTART.md in Resources */,
-				1D8D9A872F78133000428737 /* backend.gitignore in Resources */,
-				1D8D9AA72F78146A00428737 /* backendDockerfile in Resources */,
-				1D8D9AAB2F7814CC00428737 /* backendDEV_TIPS.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
