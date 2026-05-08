@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="2400" height="800" viewBox="0 0 2400 800">
+  <!--
+    VanGo Wordmark — for SplashView hero, AboutView hero, marketing.
+    Wide canvas (2400×800) gives the script-italic font enough horizontal
+    room to render without clipping. Post-processing crops to actual
+    content bounding box; final asset has no extra padding.
+
+    Composition mirrors the AppIcon master:
+      • Cobalt italic "vango" wordmark
+      • Sun-yellow brushstroke underline (slightly asymmetric)
+      • Highlight stroke for paint catching light
+  -->
+
+  <!-- "vango" wordmark, lowercase italic brush serif -->
+  <text x="1200" y="500"
+        text-anchor="middle"
+        font-family="'Bodoni 72', 'Bodoni 72 OS', Bodoni, Didot, 'Big Caslon', Georgia, serif"
+        font-style="italic"
+        font-weight="700"
+        font-size="380"
+        fill="#1E3A8A">vango</text>
+
+  <!-- Sun-yellow brushstroke underline, slightly asymmetric -->
+  <path d="M 600 600 Q 970 586 1240 596 Q 1530 608 1800 580"
+        fill="none" stroke="#F5B82E" stroke-width="26"
+        stroke-linecap="round" opacity="0.95"/>
+
+  <!-- Highlight stroke for paint catching light -->
+  <path d="M 690 598 Q 1020 590 1260 600 Q 1490 610 1730 590"
+        fill="none" stroke="#FFD060" stroke-width="9"
+        stroke-linecap="round" opacity="0.6"/>
+</svg>

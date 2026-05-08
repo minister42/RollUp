@@ -4,7 +4,7 @@ import Foundation
 final class FavoriteService: ObservableObject {
     private let apiClient: APIClient
     
-    init(apiClient: APIClient = .shared) {
+    nonisolated init(apiClient: APIClient = .shared) {
         self.apiClient = apiClient
     }
     

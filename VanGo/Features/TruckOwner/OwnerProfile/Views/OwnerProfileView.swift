@@ -54,7 +54,9 @@ struct OwnerProfileView: View {
             // Sign out
             Section {
                 Button {
-                    appState.signOut()
+                    Task {
+                        await appState.signOut()
+                    }
                 } label: {
                     HStack {
                         Spacer()

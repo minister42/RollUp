@@ -1,10 +1,10 @@
 import SwiftUI
 
 /// Brand "About" screen — accessible from the profile views. Shows the
-/// brushstroke mark prominently, the brand story in two short paragraphs,
+/// "vango" wordmark prominently, the brand story in two short paragraphs,
 /// version metadata, and links to legal/support resources.
 ///
-/// The hero image is the same vector mark used in the splash so the brand
+/// The hero image is the same wordmark used in the splash so the brand
 /// reads as continuous between launch and deeper navigation.
 struct AboutView: View {
     @Environment(\.openURL) private var openURL
@@ -31,8 +31,8 @@ struct AboutView: View {
 
     // MARK: - Sections
 
-    /// Hero — vector brushstroke mark on a subtle Sun→Terracotta gradient
-    /// wash. Sets the painterly tone before the user reads any copy.
+    /// Hero — "vango" wordmark on a subtle Sun→Terracotta gradient wash.
+    /// Sets the literary tone before the user reads any copy.
     private var hero: some View {
         ZStack {
             Color.vangoGradient

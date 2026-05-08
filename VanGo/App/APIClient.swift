@@ -2,13 +2,13 @@ import Foundation
 
 @MainActor
 final class APIClient: ObservableObject {
-    static let shared = APIClient()
+    nonisolated(unsafe) static let shared = APIClient()
     
     private let baseURL: URL
     private let session: URLSession
     private var accessToken: String?
     
-    private init() {
+    private nonisolated init() {
         self.baseURL = APIConfiguration.baseURL
         
         let configuration = URLSessionConfiguration.default

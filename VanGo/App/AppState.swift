@@ -12,7 +12,7 @@ final class AppState: ObservableObject {
     private let authService: AuthService
     private let userService: UserService
     
-    init(
+    nonisolated init(
         authService: AuthService = AuthService(),
         userService: UserService = UserService()
     ) {

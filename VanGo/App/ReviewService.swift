@@ -1,7 +1,7 @@
 import Foundation
 
-// Review model for backend communication
-struct Review: Identifiable, Codable {
+// API Review model for backend communication
+struct APIReview: Identifiable, Codable {
     let id: String
     let truckId: String
     let userId: String
@@ -17,15 +17,15 @@ struct Review: Identifiable, Codable {
 final class ReviewService: ObservableObject {
     private let apiClient: APIClient
     
-    init(apiClient: APIClient = .shared) {
+    nonisolated init(apiClient: APIClient = .shared) {
         self.apiClient = apiClient
     }
     
     // MARK: - Review Methods
     
-    func getTruckReviews(truckId: String) async throws -> [Review] {
+    func getTruckReviews(truckId: String) async throws -> [APIReview] {
         let endpoint = APIEndpoints.Reviews.getTruckReviews(truckId: truckId)
-        return try await apiClient.request(endpoint: endpoint, responseType: [Review].self)
+        return try await apiClient.request(endpoint: endpoint, responseType: [APIReview].self)
     }
     
     func createReview(
@@ -33,24 +33,24 @@ final class ReviewService: ObservableObject {
         userId: String,
         rating: Int,
         comment: String? = nil
-    ) async throws -> Review {
+    ) async throws -> APIReview {
         let request = ReviewCreateRequest(
             userId: userId,
             rating: rating,
             comment: comment
         )
         let endpoint = APIEndpoints.Reviews.createReview(truckId: truckId, review: request)
-        return try await apiClient.request(endpoint: endpoint, responseType: Review.self)
+        return try await apiClient.request(endpoint: endpoint, responseType: APIReview.self)
     }
     
     func updateReview(
         reviewId: String,
         rating: Int? = nil,
         comment: String? = nil
-    ) async throws -> Review {
+    ) async throws -> APIReview {
         let updates = ReviewUpdateRequest(rating: rating, comment: comment)
         let endpoint = APIEndpoints.Reviews.updateReview(reviewId: reviewId, updates: updates)
-        return try await apiClient.request(endpoint: endpoint, responseType: Review.self)
+        return try await apiClient.request(endpoint: endpoint, responseType: APIReview.self)
     }
     
     func deleteReview(reviewId: String) async throws {

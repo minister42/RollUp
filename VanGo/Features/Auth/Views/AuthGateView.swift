@@ -29,6 +29,7 @@ struct AuthGateView: View {
                 // Buttons
                 VStack(spacing: 14) {
                     Button {
+                        print("🔘 Get Started tapped")
                         showSignUp = true
                     } label: {
                         Text("Get Started")
@@ -38,8 +39,10 @@ struct AuthGateView: View {
                             .padding(.vertical, 16)
                             .background(Color.vangoSun, in: RoundedRectangle(cornerRadius: 14))
                     }
+                    .buttonStyle(.plain)
 
                     Button {
+                        print("🔘 Login tapped")
                         showLogin = true
                     } label: {
                         Text("I already have an account")
@@ -47,6 +50,7 @@ struct AuthGateView: View {
                             .fontWeight(.semibold)
                             .foregroundStyle(Color.vangoSun)
                     }
+                    .buttonStyle(.plain)
                 }
                 .padding(.horizontal, 24)
                 .padding(.bottom, 40)

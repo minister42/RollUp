@@ -4,9 +4,9 @@ import Foundation
 /// Use this when `APIConfiguration.enableMockData` is true
 @MainActor
 final class MockAPIClient {
-    static let shared = MockAPIClient()
+    nonisolated(unsafe) static let shared = MockAPIClient()
     
-    private init() {}
+    private nonisolated init() {}
     
     // MARK: - Mock Data
     
@@ -17,7 +17,7 @@ final class MockAPIClient {
     
     private var mockTrucks: [FoodTruck] = []
     
-    private var mockReviews: [String: [Review]] = [:] // truckId: [Review]
+    private var mockReviews: [String: [APIReview]] = [:] // truckId: [APIReview]
     
     private var mockFavorites: [String: Set<String>] = [:] // userId: Set<truckId>
     
@@ -163,7 +163,7 @@ final class MockAPIClient {
     
     // MARK: - Review Methods
     
-    func mockGetTruckReviews(truckId: String) async throws -> [Review] {
+    func mockGetTruckReviews(truckId: String) async throws -> [APIReview] {
         try await Task.sleep(nanoseconds: 400_000_000)
         return mockReviews[truckId] ?? []
     }
@@ -173,12 +173,12 @@ final class MockAPIClient {
         userId: String,
         rating: Int,
         comment: String?
-    ) async throws -> Review {
+    ) async throws -> APIReview {
         try await Task.sleep(nanoseconds: 500_000_000)
         
         let user = try await mockGetUser(userId: userId)
         
-        let review = Review(
+        let review = APIReview(
             id: "review-\(UUID().uuidString)",
             truckId: truckId,
             userId: userId,

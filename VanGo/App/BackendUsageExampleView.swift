@@ -8,7 +8,7 @@ struct BackendUsageExampleView: View {
     @StateObject private var favoriteService = FavoriteService()
     
     @State private var trucks: [FoodTruck] = []
-    @State private var reviews: [Review] = []
+    @State private var reviews: [APIReview] = []
     @State private var isLoading = false
     @State private var errorMessage: String?
     

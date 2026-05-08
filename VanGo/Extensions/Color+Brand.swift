@@ -12,6 +12,7 @@ import SwiftUI
 // resolve dynamically against the system appearance. Light mode uses the
 // canvas-on-ink palette; dark mode flips canvas → midnight (Starry Night sky)
 // while accent colors brighten slightly to glow against the dark field.
+
 extension Color {
     // Primary brand
     static let vangoSun        = Color("VangoSun")        // Sunflower yellow / primary CTAs

@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <!--
+    VanGo App Icon — refined v2
+    Uses: real Bodoni serif typography, layered impasto strokes, swirling
+    Starry Night sky pattern (not scattered dots), and glowing star halos
+    via radial gradients. Renders best when viewed in macOS Preview /
+    Safari / Quick Look since it relies on system-shipped serif fonts.
+  -->
+  <defs>
+    <!-- Sky base: not flat cobalt — radial gradient suggesting a luminous core -->
+    <radialGradient id="sky" cx="0.5" cy="0.42" r="0.85">
+      <stop offset="0%"   stop-color="#2A4BA0"/>
+      <stop offset="55%"  stop-color="#1E3A8A"/>
+      <stop offset="100%" stop-color="#0F1F4D"/>
+    </radialGradient>
+
+    <!-- Star halo gradient — yellow core fading into the sky -->
+    <radialGradient id="starHalo">
+      <stop offset="0%"   stop-color="#FFE19B" stop-opacity="0.95"/>
+      <stop offset="35%"  stop-color="#F5B82E" stop-opacity="0.45"/>
+      <stop offset="100%" stop-color="#F5B82E" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- Subtle brush-texture filter (turbulence) applied to the wordmark -->
+    <filter id="paintTexture" x="-5%" y="-5%" width="110%" height="110%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="3" result="noise"/>
+      <feColorMatrix in="noise" type="matrix"
+                     values="0 0 0 0 0
+                             0 0 0 0 0
+                             0 0 0 0 0
+                             0 0 0 -0.6 0.18" result="alpha"/>
+      <feComposite in="alpha" in2="SourceGraphic" operator="in" result="mask"/>
+      <feMerge>
+        <feMergeNode in="SourceGraphic"/>
+        <feMergeNode in="mask"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- ===== SKY ===== -->
+  <rect width="1024" height="1024" fill="url(#sky)"/>
+
+  <!-- Swirling sky strokes — Van Gogh signature element.
+       Multiple layered curves at varying widths and opacities create the
+       sense of brushed-on movement. -->
+  <g fill="none" stroke="#5B7BD8" stroke-linecap="round" stroke-linejoin="round">
+    <!-- Upper-left swirl -->
+    <path d="M 140 200 Q 240 130 360 180 Q 420 240 380 320 Q 300 360 240 310 Q 200 260 240 220"
+          stroke-width="14" opacity="0.22"/>
+    <path d="M 170 220 Q 250 170 340 200 Q 380 250 350 300 Q 290 330 260 290"
+          stroke-width="8"  opacity="0.30"/>
+
+    <!-- Upper-right swirl -->
+    <path d="M 870 160 Q 950 220 920 320 Q 850 380 760 340 Q 700 280 740 220 Q 800 180 870 200"
+          stroke-width="14" opacity="0.22"/>
+    <path d="M 850 190 Q 910 240 880 300 Q 830 340 780 310"
+          stroke-width="7"  opacity="0.30"/>
+
+    <!-- Lower-left swirl -->
+    <path d="M 100 800 Q 180 760 280 790 Q 320 850 270 900 Q 200 920 150 880"
+          stroke-width="11" opacity="0.20"/>
+
+    <!-- Lower-right swirl -->
+    <path d="M 760 820 Q 860 790 920 850 Q 920 920 840 920 Q 780 900 770 860"
+          stroke-width="11" opacity="0.20"/>
+
+    <!-- Crossing horizon stroke (subtle) -->
+    <path d="M 60 540 Q 300 510 520 530 Q 740 550 980 520"
+          stroke-width="3" opacity="0.15"/>
+  </g>
+
+  <!-- ===== STARS ===== -->
+  <!-- Each star = soft halo + bright core. The halo radius is much larger
+       than the core, which is what gives the "glow" feel — that's why
+       scattered single dots in v1 looked sterile. -->
+  <g>
+    <circle cx="200" cy="290" r="65" fill="url(#starHalo)"/>
+    <circle cx="200" cy="290" r="7"  fill="#FFE19B"/>
+
+    <circle cx="850" cy="240" r="80" fill="url(#starHalo)"/>
+    <circle cx="850" cy="240" r="9"  fill="#FFE19B"/>
+
+    <circle cx="900" cy="800" r="50" fill="url(#starHalo)"/>
+    <circle cx="900" cy="800" r="6"  fill="#FFE19B"/>
+
+    <circle cx="130" cy="780" r="42" fill="url(#starHalo)"/>
+    <circle cx="130" cy="780" r="5"  fill="#FFE19B"/>
+
+    <circle cx="500" cy="130" r="32" fill="url(#starHalo)"/>
+    <circle cx="500" cy="130" r="4"  fill="#FFE19B"/>
+
+    <circle cx="80"  cy="500" r="22" fill="url(#starHalo)"/>
+    <circle cx="80"  cy="500" r="3"  fill="#FFE19B"/>
+
+    <circle cx="950" cy="500" r="22" fill="url(#starHalo)"/>
+    <circle cx="950" cy="500" r="3"  fill="#FFE19B"/>
+  </g>
+
+  <!-- ===== WORDMARK ===== -->
+  <!-- Uses Bodoni 72 (ships with macOS) for high-contrast literary serif feel.
+       Three layered text fills create an impasto/painted effect:
+         1. Deep shadow layer offset down-right
+         2. Mid-tone main layer
+         3. Highlight layer offset up-left -->
+  <g text-anchor="middle"
+     font-family="'Bodoni 72', 'Bodoni 72 OS', Bodoni, Didot, 'Big Caslon', Georgia, serif"
+     font-weight="700">
+
+    <!-- Shadow / deep layer -->
+    <text x="520" y="680" font-size="520" fill="#7A4810" opacity="0.55">VG</text>
+    <!-- Main impasto -->
+    <text x="514" y="672" font-size="520" fill="#F5B82E" filter="url(#paintTexture)">VG</text>
+    <!-- Highlight -->
+    <text x="510" y="668" font-size="520" fill="#FFD55A" opacity="0.45">VG</text>
+  </g>
+
+  <!-- ===== Subtle painterly underline mark =====
+       A single confident brushstroke under the wordmark — the kind of
+       gestural mark that signals "painted by hand" without literally
+       depicting Van Gogh's style. -->
+  <path d="M 240 850 Q 360 825 510 838 Q 660 850 800 830"
+        fill="none" stroke="#F5B82E" stroke-width="14" stroke-linecap="round"
+        opacity="0.85"/>
+  <path d="M 280 858 Q 380 842 510 848 Q 640 858 760 842"
+        fill="none" stroke="#FFE19B" stroke-width="5" stroke-linecap="round"
+        opacity="0.6"/>
+</svg>

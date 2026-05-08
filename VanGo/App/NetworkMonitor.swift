@@ -4,7 +4,7 @@ import Network
 /// Monitors network connectivity and provides status to the app
 @MainActor
 final class NetworkMonitor: ObservableObject {
-    static let shared = NetworkMonitor()
+    nonisolated(unsafe) static let shared = NetworkMonitor()
     
     @Published var isConnected: Bool = true
     @Published var connectionType: ConnectionType = .unknown
@@ -32,7 +32,7 @@ final class NetworkMonitor: ObservableObject {
         }
     }
     
-    private init() {
+    private nonisolated init() {
         monitor = NWPathMonitor()
     }
     

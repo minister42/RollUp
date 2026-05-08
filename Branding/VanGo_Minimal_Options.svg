@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="1300" viewBox="0 0 1100 1300"
+     font-family="-apple-system, system-ui, Helvetica, sans-serif">
+  <rect width="1100" height="1300" fill="#FAF6E8"/>
+
+  <!-- Header -->
+  <text x="550" y="60" text-anchor="middle" font-size="36" font-weight="700" fill="#1F1F2E">
+    VanGo — Minimal Icon Directions
+  </text>
+  <text x="550" y="95" text-anchor="middle" font-size="16" fill="#5C6378">
+    Pure typography. No illustration needed. All achievable in clean SVG.
+  </text>
+
+  <!-- Common serif for all options -->
+  <defs>
+    <style>
+      .serif { font-family: 'Bodoni 72', 'Bodoni 72 OS', Bodoni, Didot, 'Big Caslon', Georgia, serif; }
+      .label { font-family: -apple-system, system-ui, Helvetica, sans-serif; font-size: 17px; fill: #1F1F2E; font-weight: 600; }
+      .caption { font-family: -apple-system, system-ui, Helvetica, sans-serif; font-size: 13px; fill: #5C6378; }
+    </style>
+  </defs>
+
+  <!-- ===== OPTION A: Pure VG Wordmark ===== -->
+  <g transform="translate(80, 150)">
+    <text class="label" x="0" y="0">A — Pure wordmark (most restrained)</text>
+    <text class="caption" x="0" y="22">Cobalt with serif "VG". Nothing else. The most confident option.</text>
+
+    <rect x="0" y="40" width="380" height="380" rx="84" fill="#1E3A8A"/>
+    <text class="serif" x="190" y="305" text-anchor="middle"
+          font-size="280" font-weight="700" fill="#F5B82E">VG</text>
+
+    <!-- Small thumbnail to show home-screen scale -->
+    <rect x="420" y="40" width="80" height="80" rx="18" fill="#1E3A8A"/>
+    <text class="serif" x="460" y="98" text-anchor="middle"
+          font-size="58" font-weight="700" fill="#F5B82E">VG</text>
+    <text class="caption" x="420" y="135">at 60×60</text>
+  </g>
+
+  <!-- ===== OPTION B: VG + single star ===== -->
+  <g transform="translate(620, 150)">
+    <text class="label" x="0" y="0">B — Wordmark + single star (recommended)</text>
+    <text class="caption" x="0" y="22">One small star is the whole Van Gogh nod. Quiet, smart.</text>
+
+    <rect x="0" y="40" width="380" height="380" rx="84" fill="#1E3A8A"/>
+    <text class="serif" x="190" y="305" text-anchor="middle"
+          font-size="280" font-weight="700" fill="#F5B82E">VG</text>
+    <!-- Single star, 4-pointed sparkle -->
+    <g transform="translate(310, 110)" fill="#F5B82E">
+      <path d="M 0 -22 L 4 -4 L 22 0 L 4 4 L 0 22 L -4 4 L -22 0 L -4 -4 Z"/>
+    </g>
+
+    <rect x="420" y="40" width="80" height="80" rx="18" fill="#1E3A8A"/>
+    <text class="serif" x="460" y="98" text-anchor="middle"
+          font-size="58" font-weight="700" fill="#F5B82E">VG</text>
+    <g transform="translate(485, 56) scale(0.32)" fill="#F5B82E">
+      <path d="M 0 -22 L 4 -4 L 22 0 L 4 4 L 0 22 L -4 4 L -22 0 L -4 -4 Z"/>
+    </g>
+    <text class="caption" x="420" y="135">at 60×60</text>
+  </g>
+
+  <!-- ===== OPTION C: Inverted (yellow on cobalt) ===== -->
+  <g transform="translate(80, 600)">
+    <text class="label" x="0" y="0">C — Inverted: sun on cobalt-VG</text>
+    <text class="caption" x="0" y="22">Sun-yellow field. Sunnier and warmer. Higher visibility on home screens.</text>
+
+    <rect x="0" y="40" width="380" height="380" rx="84" fill="#F5B82E"/>
+    <text class="serif" x="190" y="305" text-anchor="middle"
+          font-size="280" font-weight="700" fill="#1E3A8A">VG</text>
+
+    <rect x="420" y="40" width="80" height="80" rx="18" fill="#F5B82E"/>
+    <text class="serif" x="460" y="98" text-anchor="middle"
+          font-size="58" font-weight="700" fill="#1E3A8A">VG</text>
+    <text class="caption" x="420" y="135">at 60×60</text>
+  </g>
+
+  <!-- ===== OPTION D: Lowercase wordmark ===== -->
+  <g transform="translate(620, 600)">
+    <text class="label" x="0" y="0">D — Full lowercase wordmark</text>
+    <text class="caption" x="0" y="22">"vango" in serif on canvas. Feels literary — like a book cover.</text>
+
+    <rect x="0" y="40" width="380" height="380" rx="84" fill="#FAF6E8" stroke="#5C6378" stroke-width="1"/>
+    <text class="serif" x="190" y="245" text-anchor="middle"
+          font-size="120" font-weight="700" fill="#1E3A8A" font-style="italic">vango</text>
+    <!-- subtle yellow brushstroke underline -->
+    <path d="M 75 268 Q 190 258 305 264" fill="none" stroke="#F5B82E"
+          stroke-width="6" stroke-linecap="round"/>
+
+    <rect x="420" y="40" width="80" height="80" rx="18" fill="#FAF6E8" stroke="#5C6378" stroke-width="1"/>
+    <text class="serif" x="460" y="82" text-anchor="middle"
+          font-size="25" font-weight="700" fill="#1E3A8A" font-style="italic">vango</text>
+    <path d="M 437 89 Q 460 87 483 89" fill="none" stroke="#F5B82E"
+          stroke-width="2" stroke-linecap="round"/>
+    <text class="caption" x="420" y="135">at 60×60</text>
+  </g>
+
+  <!-- ===== Recommendation ===== -->
+  <g transform="translate(80, 1080)">
+    <rect x="0" y="0" width="940" height="170" rx="20" fill="#FFFFFF"
+          stroke="#1E3A8A" stroke-width="2"/>
+
+    <text x="20" y="35" font-size="18" font-weight="700" fill="#1E3A8A">
+      Recommendation: Option B
+    </text>
+    <text x="20" y="62" font-size="14" fill="#1F1F2E">
+      A clean serif "VG" on cobalt with one small star. The Van Gogh association lives in
+    </text>
+    <text x="20" y="82" font-size="14" fill="#1F1F2E">
+      the single star — restrained, quiet, achievable in pure SVG. No painterly aesthetic
+    </text>
+    <text x="20" y="102" font-size="14" fill="#1F1F2E">
+      needed; the icon stands on confident typography.
+    </text>
+    <text x="20" y="135" font-size="13" fill="#5C6378" font-style="italic">
+      Reads at 60×60. Survives dark mode. Works as a sticker, watermark, or favicon.
+    </text>
+    <text x="20" y="155" font-size="13" fill="#5C6378" font-style="italic">
+      No illustrator, no AI gen, no painted-style debt to maintain over time.
+    </text>
+  </g>
+</svg>
