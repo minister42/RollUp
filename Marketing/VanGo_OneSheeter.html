@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>VanGo — Food Truck Partner Brief</title>
+<style>
+  /* =========================================================
+     PRINT SETUP — Letter, narrow margins, exact colour print.
+     Open this file in Safari/Chrome, then File → Export as PDF
+     or Cmd+P → "Save as PDF". Print double-sided to make a
+     real one-sheeter.
+     ========================================================= */
+  @page {
+    size: letter;
+    margin: 0.35in;
+  }
+  @media print {
+    body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .page { box-shadow: none; }
+  }
+
+  /* =========================================================
+     BRAND TOKENS — pulled from VanGo Color+Brand.swift
+     ========================================================= */
+  :root {
+    --sun:        #F5B82E;
+    --cobalt:     #1E3A8A;
+    --starlight:  #3B5BDB;
+    --canvas:     #FAF6E8;
+    --ink:        #1F1F2E;
+    --terracotta: #C8553D;
+    --olive:      #7A8C5C;
+    --slate:      #5C6378;
+    --mist:       #F2F2F5;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: -apple-system, "SF Pro Text", "Helvetica Neue", system-ui, sans-serif;
+    color: var(--ink);
+    background: #d8d4c5;          /* darker than canvas — only seen on screen */
+    font-size: 10.5pt;
+    line-height: 1.45;
+  }
+
+  .page {
+    width: 8.5in;
+    min-height: 11in;
+    padding: 0.45in 0.45in 0.4in;
+    background: var(--canvas);
+    margin: 0.5in auto;
+    box-shadow: 0 2px 18px rgba(0,0,0,0.18);
+    page-break-after: always;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+  }
+  .page:last-child { page-break-after: auto; }
+
+  /* =========================================================
+     SHARED ELEMENTS
+     ========================================================= */
+
+  /* Wordmark in the header — built from inline SVG so it never
+     depends on an external image file at print time. */
+  .wordmark { font-family: "Snell Roundhand", "Bodoni 72", "Bodoni 72 OS", Bodoni, Didot, "Big Caslon", Georgia, serif;
+    font-style: italic; font-weight: 700;
+    color: var(--cobalt);
+  }
+  .wordmark-stroke {
+    display: inline-block; height: 5px; width: 80%;
+    background: var(--sun); border-radius: 3px; margin-top: -8px;
+  }
+
+  /* Page header band */
+  header.brand {
+    display: flex; align-items: flex-end; justify-content: space-between;
+    padding-bottom: 14px;
+    border-bottom: 2px solid var(--cobalt);
+    margin-bottom: 18px;
+  }
+  header.brand .lockup .wordmark { font-size: 56pt; line-height: 0.9; }
+  header.brand .lockup .wordmark-stroke { width: 70%; margin-left: 4px; }
+  header.brand .lockup .tag {
+    font-size: 9pt; color: var(--slate); margin-top: 6px; letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+  header.brand .doc-meta {
+    text-align: right; font-size: 8.5pt; color: var(--slate); line-height: 1.4;
+  }
+  header.brand .doc-meta .label {
+    display: inline-block; padding: 3px 8px;
+    background: var(--cobalt); color: var(--canvas);
+    border-radius: 4px; font-weight: 600; letter-spacing: 0.05em;
+    text-transform: uppercase; font-size: 7.5pt; margin-bottom: 4px;
+  }
+
+  h1 { font-size: 22pt; line-height: 1.15; color: var(--cobalt);
+       font-weight: 800; letter-spacing: -0.02em; margin-bottom: 8px; }
+  h2 { font-size: 14pt; color: var(--cobalt); font-weight: 700;
+       margin: 18px 0 8px; letter-spacing: -0.01em;
+       border-bottom: 1px dashed var(--mist); padding-bottom: 4px; }
+  h3 { font-size: 10.5pt; color: var(--cobalt); font-weight: 700;
+       text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 4px; }
+  p  { margin-bottom: 8px; }
+  em { color: var(--slate); }
+
+  /* =========================================================
+     FRONT — value props grid
+     ========================================================= */
+  .hero {
+    display: grid; grid-template-columns: 1.4fr 1fr; gap: 22px; align-items: center;
+    margin-bottom: 14px;
+  }
+  .hero .eyebrow {
+    font-size: 9pt; text-transform: uppercase; letter-spacing: 0.08em;
+    color: var(--terracotta); font-weight: 700; margin-bottom: 6px;
+  }
+  .hero p { font-size: 10pt; color: var(--ink); }
+  .hero-illustration {
+    background: var(--cobalt); border-radius: 18px;
+    padding: 24px 18px; color: var(--canvas);
+    text-align: center;
+  }
+  .hero-illustration .quote {
+    font-style: italic; font-size: 10.5pt; line-height: 1.5;
+  }
+  .hero-illustration .quote::before { content: "\201C"; font-size: 22pt;
+      color: var(--sun); display: block; line-height: 0.7; margin-bottom: 4px; }
+  .hero-illustration .attrib {
+    font-size: 8.5pt; color: var(--sun); margin-top: 10px;
+    text-transform: uppercase; letter-spacing: 0.06em;
+  }
+
+  /* Three-up value prop cards */
+  .value-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px;
+    margin: 14px 0 18px;
+  }
+  .value-card {
+    background: white;
+    border: 1px solid var(--mist);
+    border-radius: 12px;
+    padding: 14px 14px 12px;
+    border-left: 4px solid var(--sun);
+  }
+  .value-card .icon {
+    font-size: 20pt; line-height: 1; margin-bottom: 6px; display: block;
+  }
+  .value-card .vp-title {
+    font-size: 10.5pt; font-weight: 700; color: var(--cobalt);
+    margin-bottom: 4px;
+  }
+  .value-card p { font-size: 9pt; color: var(--ink); margin: 0; line-height: 1.4; }
+
+  /* Phone mockups row */
+  .mockups {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px;
+    margin-bottom: 14px; align-items: end;
+  }
+  .mockup {
+    text-align: center;
+  }
+  .mockup .phone {
+    width: 100%; max-width: 200px;
+    aspect-ratio: 9 / 19;
+    margin: 0 auto;
+    background: var(--ink);
+    border-radius: 24px;
+    padding: 6px;
+    overflow: hidden;
+  }
+  .mockup .screen {
+    background: white; height: 100%; border-radius: 18px;
+    overflow: hidden; position: relative;
+  }
+  .mockup .caption {
+    margin-top: 6px;
+    font-size: 8.5pt;
+    color: var(--slate);
+  }
+  .mockup .caption strong { color: var(--cobalt); }
+
+  /* How-it-works strip */
+  .how {
+    margin-top: auto; padding-top: 12px;
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px;
+    border-top: 1px solid var(--mist);
+  }
+  .how .step {
+    font-size: 9pt;
+  }
+  .how .step .num {
+    display: inline-block;
+    width: 22px; height: 22px; line-height: 22px;
+    background: var(--sun); color: var(--ink);
+    border-radius: 50%;
+    font-weight: 800; text-align: center;
+    margin-bottom: 4px;
+  }
+  .how .step .label { font-weight: 700; color: var(--cobalt); display: block; font-size: 9.5pt; }
+
+  /* =========================================================
+     BACK — discussion + feedback
+     ========================================================= */
+  .pricing {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px;
+  }
+  .tier {
+    border: 1.5px solid var(--mist); border-radius: 14px; padding: 14px 16px;
+    background: white;
+  }
+  .tier.pro { border-color: var(--sun); border-width: 2px; position: relative; }
+  .tier.pro::after {
+    content: "MOST FEATURE-RICH";
+    position: absolute; top: -10px; right: 12px;
+    background: var(--sun); color: var(--ink);
+    font-size: 7.5pt; font-weight: 700; padding: 2px 8px; border-radius: 4px;
+    letter-spacing: 0.05em;
+  }
+  .tier .tier-name { font-size: 12pt; font-weight: 800; color: var(--cobalt); }
+  .tier .price { font-size: 18pt; color: var(--cobalt); font-weight: 800; }
+  .tier .price .per { font-size: 9pt; color: var(--slate); font-weight: 500; }
+  .tier ul { list-style: none; margin-top: 8px; }
+  .tier li { font-size: 9pt; padding-left: 18px; position: relative; line-height: 1.5; }
+  .tier li::before {
+    content: "✓"; position: absolute; left: 0; color: var(--olive); font-weight: 700;
+  }
+  .tier li.dim { color: var(--slate); opacity: 0.6; }
+  .tier li.dim::before { content: "—"; color: var(--slate); }
+
+  /* Question grid */
+  .questions {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 8px 18px;
+    margin: 6px 0 12px;
+  }
+  .q {
+    border-bottom: 1px solid var(--mist); padding-bottom: 6px;
+  }
+  .q .qnum {
+    color: var(--terracotta); font-weight: 800; font-size: 8.5pt;
+    letter-spacing: 0.05em;
+  }
+  .q .qtext { font-size: 9.5pt; color: var(--ink); display: block; }
+  .q .lines {
+    margin-top: 5px;
+    border-bottom: 1px solid var(--slate); height: 16px;
+  }
+  .q .lines + .lines { margin-top: 4px; }
+
+  /* Feedback open box */
+  .open-box {
+    border: 1.5px dashed var(--cobalt); border-radius: 12px;
+    padding: 10px 14px;
+    margin-bottom: 12px;
+    background: rgba(245, 184, 46, 0.08);
+  }
+  .open-box h3 { color: var(--cobalt); }
+  .open-box .lines { border-bottom: 1px solid var(--slate); height: 16px; margin-top: 8px; }
+
+  /* Footer / call-to-action */
+  footer.cta {
+    margin-top: auto;
+    padding-top: 12px;
+    border-top: 2px solid var(--cobalt);
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 14px;
+    align-items: center;
+  }
+  footer.cta .next-steps p {
+    font-size: 9pt; color: var(--ink); margin-bottom: 4px;
+  }
+  footer.cta .next-steps strong { color: var(--cobalt); }
+  footer.cta .return-to {
+    background: var(--cobalt); color: var(--canvas);
+    border-radius: 12px; padding: 12px 16px;
+    font-size: 9pt; line-height: 1.4;
+  }
+  footer.cta .return-to .label { color: var(--sun); font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.05em; font-size: 8.5pt; display: block; }
+  footer.cta .return-to .placeholder { color: var(--sun); font-style: italic; opacity: 0.85; }
+
+  .checkboxes {
+    display: flex; gap: 16px; margin-top: 6px; font-size: 9pt;
+  }
+  .checkbox-item {
+    display: flex; align-items: center; gap: 6px;
+  }
+  .checkbox-item .box {
+    width: 12px; height: 12px; border: 1.5px solid var(--cobalt);
+    border-radius: 2px;
+  }
+
+  /* =========================================================
+     INLINE iPhone-screen mock styles
+     ========================================================= */
+  .screen .status-bar {
+    height: 14px; background: var(--cobalt); display: flex;
+    align-items: center; justify-content: space-between; padding: 0 8px;
+    color: var(--canvas); font-size: 6.5pt; font-weight: 600;
+  }
+  .screen .nav-bar {
+    background: var(--cobalt); color: var(--canvas);
+    padding: 8px 10px 12px; font-size: 8pt; font-weight: 700;
+    border-bottom-left-radius: 12px; border-bottom-right-radius: 12px;
+  }
+  .screen .nav-bar .title { font-size: 11pt; font-weight: 800; }
+  .screen .nav-bar .subtitle { font-size: 7pt; opacity: 0.85; }
+  .screen .body { padding: 8px 10px; }
+
+  /* Dashboard mock */
+  .mock-dashboard .stat-row {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin: 8px 0;
+  }
+  .mock-dashboard .stat {
+    background: var(--canvas); border-radius: 8px; padding: 8px;
+    border-left: 3px solid var(--sun);
+  }
+  .mock-dashboard .stat .num { font-size: 14pt; font-weight: 800; color: var(--cobalt); display: block; }
+  .mock-dashboard .stat .lbl { font-size: 6.5pt; color: var(--slate); }
+  .mock-dashboard .toggle-row {
+    background: var(--olive); color: var(--canvas);
+    padding: 8px 10px; border-radius: 8px;
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 8pt; font-weight: 700;
+  }
+  .mock-dashboard .toggle-row .pill {
+    background: var(--canvas); color: var(--olive);
+    border-radius: 99px; padding: 2px 8px;
+    font-size: 7pt;
+  }
+  .mock-dashboard .feed {
+    margin-top: 8px;
+  }
+  .mock-dashboard .feed .item {
+    display: flex; justify-content: space-between; padding: 4px 0;
+    font-size: 7.5pt; border-bottom: 0.5px solid var(--mist);
+  }
+  .mock-dashboard .feed .item .name { color: var(--ink); font-weight: 600; }
+  .mock-dashboard .feed .item .amt { color: var(--olive); font-weight: 700; }
+
+  /* Map mock */
+  .mock-map .map-canvas {
+    background: linear-gradient(135deg, #C8DCEF 0%, #B5C9DC 100%);
+    border-radius: 8px; height: 60%; position: relative; overflow: hidden;
+    margin-bottom: 8px;
+  }
+  .mock-map .road {
+    position: absolute; background: #fff; opacity: 0.7;
+  }
+  .mock-map .pin {
+    position: absolute; width: 14px; height: 14px; border-radius: 50%;
+    background: var(--sun); border: 2px solid var(--cobalt);
+    transform: translate(-50%, -50%);
+  }
+  .mock-map .pin.you {
+    background: var(--terracotta); width: 18px; height: 18px;
+  }
+  .mock-map .pin.you::after {
+    content: ""; position: absolute; top: 100%; left: 50%; transform: translateX(-50%);
+    width: 0; height: 0; border-left: 5px solid transparent; border-right: 5px solid transparent;
+    border-top: 8px solid var(--terracotta);
+  }
+  .mock-map .truck-card {
+    background: white; border-radius: 8px; padding: 8px 10px;
+    border-left: 3px solid var(--sun);
+    font-size: 7.5pt;
+  }
+  .mock-map .truck-card .name { font-weight: 800; color: var(--cobalt); font-size: 9pt; }
+  .mock-map .truck-card .meta { color: var(--slate); }
+  .mock-map .truck-card .open-pill {
+    display: inline-block; background: var(--olive); color: var(--canvas);
+    border-radius: 99px; padding: 1px 7px;
+    font-size: 6.5pt; font-weight: 700; margin-left: 4px;
+  }
+
+  /* Coupon editor mock */
+  .mock-coupon .field {
+    background: var(--canvas); padding: 6px 8px; border-radius: 6px;
+    margin-bottom: 6px; font-size: 7.5pt;
+  }
+  .mock-coupon .field .lbl {
+    color: var(--slate); font-size: 6.5pt; text-transform: uppercase;
+    letter-spacing: 0.05em; display: block;
+  }
+  .mock-coupon .field .val { color: var(--ink); font-weight: 700; }
+  .mock-coupon .preview {
+    background: var(--terracotta); color: var(--canvas);
+    border-radius: 8px; padding: 8px;
+    text-align: center; font-size: 8pt; margin: 8px 0;
+  }
+  .mock-coupon .preview .deal { font-size: 14pt; font-weight: 800; }
+  .mock-coupon .save-btn {
+    background: var(--sun); color: var(--ink);
+    text-align: center; padding: 8px; border-radius: 8px;
+    font-size: 8.5pt; font-weight: 700;
+  }
+</style>
+</head>
+<body>
+
+<!-- ==========================================================
+     PAGE 1 — FRONT: pitch + screenshots
+     ========================================================== -->
+<div class="page" id="front">
+  <header class="brand">
+    <div class="lockup">
+      <span class="wordmark">vango</span><br>
+      <span class="wordmark-stroke"></span>
+      <div class="tag">Food trucks · Discovered in real-time</div>
+    </div>
+    <div class="doc-meta">
+      <span class="label">Partner Brief</span><br>
+      For local food truck operators<br>
+      Pre-launch · Beta program
+    </div>
+  </header>
+
+  <section class="hero">
+    <div>
+      <div class="eyebrow">A pitch — and a question</div>
+      <h1>Stop posting your location into the void. Start showing up on their map.</h1>
+      <p>VanGo connects hungry locals with the food trucks they want — in real-time, with menus, deals, and live locations all in one place. We're building it <strong>with</strong> truck operators, not at them. Five minutes with you helps us build something you'll actually use.</p>
+    </div>
+    <div class="hero-illustration">
+      <div class="quote">My regulars always find me. New customers? They have no idea where I'll be on Thursday.</div>
+      <div class="attrib">— what we keep hearing</div>
+    </div>
+  </section>
+
+  <section>
+    <h2>What VanGo gives you</h2>
+    <div class="value-grid">
+      <div class="value-card">
+        <span class="icon">📍</span>
+        <div class="vp-title">Live location, broadcast once</div>
+        <p>Tap "I'm Open" — your pin lights up on the map for every nearby user. No more 8 Instagram stories a day.</p>
+      </div>
+      <div class="value-card">
+        <span class="icon">🍴</span>
+        <div class="vp-title">Your full menu, always current</div>
+        <p>Photos, prices, dietary tags. Update once, customers see it instantly. Replaces your menu PDF, your Yelp listing, and that whiteboard.</p>
+      </div>
+      <div class="value-card">
+        <span class="icon">🎟️</span>
+        <div class="vp-title">Coupons that drive lunch traffic</div>
+        <p>Slow Tuesday? Push a 25%-off coupon at 11:30am. Customers within 1 mile get pinged. Track redemptions in real time.</p>
+      </div>
+      <div class="value-card">
+        <span class="icon">⭐</span>
+        <div class="vp-title">Reviews that bring new faces</div>
+        <p>Built-in ratings & reviews. Social proof for first-timers without you chasing Yelp.</p>
+      </div>
+      <div class="value-card">
+        <span class="icon">🔔</span>
+        <div class="vp-title">Push to your favorites</div>
+        <p>"Open in Northgate today, 11am–2pm." Customers who saved you get the alert. Repeat business, automated.</p>
+      </div>
+      <div class="value-card">
+        <span class="icon">📊</span>
+        <div class="vp-title">Insights you can act on</div>
+        <p>Which neighborhoods bring the most clicks? Which menu items get the most views? See what's working before lunch rush.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="mockups">
+    <!-- Mock 1: Owner Dashboard -->
+    <div class="mockup">
+      <div class="phone">
+        <div class="screen mock-dashboard">
+          <div class="status-bar"><span>9:41</span><span>●●● 100%</span></div>
+          <div class="nav-bar">
+            <div class="title">Today</div>
+            <div class="subtitle">Mama's Tacos · Pro</div>
+          </div>
+          <div class="body">
+            <div class="toggle-row">
+              <span>● You're Open</span>
+              <span class="pill">live</span>
+            </div>
+            <div class="stat-row">
+              <div class="stat"><span class="num">142</span><span class="lbl">profile views today</span></div>
+              <div class="stat"><span class="num">23</span><span class="lbl">favorites added</span></div>
+            </div>
+            <div class="stat-row">
+              <div class="stat"><span class="num">8</span><span class="lbl">coupons redeemed</span></div>
+              <div class="stat"><span class="num">⭐ 4.8</span><span class="lbl">avg rating</span></div>
+            </div>
+            <div class="feed">
+              <div class="item"><span class="name">New review</span><span class="amt">⭐⭐⭐⭐⭐</span></div>
+              <div class="item"><span class="name">Coupon redeemed</span><span class="amt">$3.75</span></div>
+              <div class="item"><span class="name">New favorite</span><span class="amt">+1</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="caption"><strong>Your dashboard.</strong><br>Real-time pulse on your day.</div>
+    </div>
+
+    <!-- Mock 2: Customer Map View -->
+    <div class="mockup">
+      <div class="phone">
+        <div class="screen mock-map">
+          <div class="status-bar"><span>9:41</span><span>●●● 100%</span></div>
+          <div class="nav-bar">
+            <div class="title">Trucks Near You</div>
+            <div class="subtitle">Capitol Hill · 0.4 mi radius</div>
+          </div>
+          <div class="body">
+            <div class="map-canvas">
+              <div class="road" style="top: 30%; left: 0; right: 0; height: 2px;"></div>
+              <div class="road" style="top: 65%; left: 0; right: 0; height: 2px;"></div>
+              <div class="road" style="top: 0; bottom: 0; left: 35%; width: 2px;"></div>
+              <div class="road" style="top: 0; bottom: 0; left: 70%; width: 2px;"></div>
+              <div class="pin" style="top: 25%; left: 30%;"></div>
+              <div class="pin you" style="top: 50%; left: 50%;"></div>
+              <div class="pin" style="top: 70%; left: 75%;"></div>
+              <div class="pin" style="top: 80%; left: 20%;"></div>
+            </div>
+            <div class="truck-card">
+              <div class="name">Mama's Tacos <span class="open-pill">Open</span></div>
+              <div class="meta">Mexican · 0.2 mi · ⭐ 4.8 · 25% off until 2pm</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="caption"><strong>How customers find you.</strong><br>You're the orange pin.</div>
+    </div>
+
+    <!-- Mock 3: Coupon Editor -->
+    <div class="mockup">
+      <div class="phone">
+        <div class="screen mock-coupon">
+          <div class="status-bar"><span>9:41</span><span>●●● 100%</span></div>
+          <div class="nav-bar">
+            <div class="title">New Coupon</div>
+            <div class="subtitle">Push to nearby customers</div>
+          </div>
+          <div class="body">
+            <div class="field">
+              <span class="lbl">Discount</span>
+              <span class="val">25% off any order</span>
+            </div>
+            <div class="field">
+              <span class="lbl">Expires</span>
+              <span class="val">Today, 2:00 PM</span>
+            </div>
+            <div class="field">
+              <span class="lbl">Radius</span>
+              <span class="val">1 mile</span>
+            </div>
+            <div class="preview">
+              <div class="deal">25% off</div>
+              <div>at Mama's Tacos · today only</div>
+            </div>
+            <div class="save-btn">Send to 1,247 nearby</div>
+          </div>
+        </div>
+      </div>
+      <div class="caption"><strong>Drive lunch traffic.</strong><br>Coupon out in under a minute.</div>
+    </div>
+  </section>
+
+  <section class="how">
+    <div class="step"><span class="num">1</span> <span class="label">Claim your truck</span> Free signup, verify your business.</div>
+    <div class="step"><span class="num">2</span> <span class="label">Build your profile</span> Menu, photos, hours, social.</div>
+    <div class="step"><span class="num">3</span> <span class="label">Toggle Open</span> Customers see you live on the map.</div>
+    <div class="step"><span class="num">4</span> <span class="label">Push deals</span> Run coupons when you need traffic.</div>
+  </section>
+</div>
+
+<!-- ==========================================================
+     PAGE 2 — BACK: discussion guide + feedback form
+     ========================================================== -->
+<div class="page" id="back">
+  <header class="brand">
+    <div class="lockup">
+      <span class="wordmark" style="font-size: 36pt;">vango</span>
+      <span class="wordmark-stroke" style="width: 60%;"></span>
+      <div class="tag">We're listening</div>
+    </div>
+    <div class="doc-meta">
+      <span class="label" style="background: var(--terracotta);">Voice of Customer</span><br>
+      Your feedback shapes V1<br>
+      Honest answers welcomed
+    </div>
+  </header>
+
+  <h2 style="margin-top: 0;">Two pricing tiers we're considering — does this make sense for you?</h2>
+  <div class="pricing">
+    <div class="tier">
+      <div class="tier-name">Basic</div>
+      <div class="price">$9.99<span class="per">/month</span></div>
+      <ul>
+        <li>Get listed in the app</li>
+        <li>Build your menu &amp; profile</li>
+        <li>Pin your location (manual)</li>
+        <li>Collect reviews &amp; ratings</li>
+        <li class="dim">Live GPS tracking</li>
+        <li class="dim">"Open Now" broadcast</li>
+        <li class="dim">Priority placement</li>
+      </ul>
+    </div>
+    <div class="tier pro">
+      <div class="tier-name">Pro</div>
+      <div class="price">$24.99<span class="per">/month</span></div>
+      <ul>
+        <li>Everything in Basic</li>
+        <li>Live GPS broadcasting</li>
+        <li>"Open Now" push to nearby users</li>
+        <li>Priority placement in search</li>
+        <li>Coupon push notifications</li>
+        <li>Customer insights dashboard</li>
+        <li>Ad campaign tools</li>
+      </ul>
+    </div>
+  </div>
+
+  <h2>Help us not waste your time — please answer in your own words</h2>
+  <div class="questions">
+    <div class="q">
+      <span class="qnum">Q1</span>
+      <span class="qtext">How do customers currently find you on a typical day?</span>
+      <div class="lines"></div>
+      <div class="lines"></div>
+    </div>
+    <div class="q">
+      <span class="qnum">Q2</span>
+      <span class="qtext">What's the #1 thing that would help you get more customers?</span>
+      <div class="lines"></div>
+      <div class="lines"></div>
+    </div>
+    <div class="q">
+      <span class="qnum">Q3</span>
+      <span class="qtext">Is the Basic / Pro pricing reasonable for you? Why or why not?</span>
+      <div class="lines"></div>
+      <div class="lines"></div>
+    </div>
+    <div class="q">
+      <span class="qnum">Q4</span>
+      <span class="qtext">Which features above are MUST-HAVES? Which are nice-to-have?</span>
+      <div class="lines"></div>
+      <div class="lines"></div>
+    </div>
+    <div class="q">
+      <span class="qnum">Q5</span>
+      <span class="qtext">What features are we missing that you'd want to see?</span>
+      <div class="lines"></div>
+      <div class="lines"></div>
+    </div>
+    <div class="q">
+      <span class="qnum">Q6</span>
+      <span class="qtext">What would make you NOT use this app?</span>
+      <div class="lines"></div>
+      <div class="lines"></div>
+    </div>
+  </div>
+
+  <div class="open-box">
+    <h3>Open mic — anything else on your mind</h3>
+    <p style="font-size: 9pt; color: var(--slate); margin: 0;">Pet peeves, dream features, deal-breakers, war stories. We'd rather hear it now than ship something you ignore.</p>
+    <div class="lines"></div>
+    <div class="lines"></div>
+    <div class="lines"></div>
+  </div>
+
+  <div style="margin-bottom: 12px;">
+    <h3>Want to be part of the beta?</h3>
+    <div class="checkboxes">
+      <div class="checkbox-item"><span class="box"></span> Yes, count me in</div>
+      <div class="checkbox-item"><span class="box"></span> Maybe — keep me posted</div>
+      <div class="checkbox-item"><span class="box"></span> Not for me right now</div>
+    </div>
+    <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; margin-top: 8px;">
+      <div>
+        <div style="font-size: 7.5pt; color: var(--slate); text-transform: uppercase; letter-spacing: 0.05em;">Truck name</div>
+        <div style="border-bottom: 1px solid var(--slate); height: 16px;"></div>
+      </div>
+      <div>
+        <div style="font-size: 7.5pt; color: var(--slate); text-transform: uppercase; letter-spacing: 0.05em;">Email or phone</div>
+        <div style="border-bottom: 1px solid var(--slate); height: 16px;"></div>
+      </div>
+      <div>
+        <div style="font-size: 7.5pt; color: var(--slate); text-transform: uppercase; letter-spacing: 0.05em;">Best time to reach you</div>
+        <div style="border-bottom: 1px solid var(--slate); height: 16px;"></div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="cta">
+    <div class="next-steps">
+      <p><strong>Thanks for your time.</strong> Your honesty here directly shapes what we ship in v1. We're not selling — we're learning.</p>
+      <p style="color: var(--slate); font-size: 8.5pt;">If we use a quote from you in our pitch deck, we'll ask first. No data shared with third parties.</p>
+    </div>
+    <div class="return-to">
+      <span class="label">Return this sheet to:</span>
+      <span class="placeholder">[Your name]<br>[email@vango.app]<br>[(555) 555-5555]</span>
+    </div>
+  </footer>
+</div>
+
+</body>
+</html>
