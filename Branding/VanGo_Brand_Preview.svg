@@ -1,0 +1,212 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 1500" font-family="-apple-system, system-ui, Helvetica, sans-serif">
+  <!-- Background -->
+  <rect width="1100" height="1500" fill="#FAF6E8"/>
+
+  <!-- ===== HEADER ===== -->
+  <text x="550" y="70" text-anchor="middle" font-size="38" font-weight="700" fill="#1F1F2E">VanGo — Brand Preview</text>
+  <text x="550" y="105" text-anchor="middle" font-size="18" fill="#5C6378">Sunflowers &amp; Starlight palette · 3 logo concepts</text>
+
+  <!-- ===== PALETTE ROW ===== -->
+  <g transform="translate(80, 150)">
+    <text x="0" y="0" font-size="22" font-weight="600" fill="#1F1F2E">Palette</text>
+
+    <!-- Sun -->
+    <rect x="0" y="20" width="120" height="120" rx="14" fill="#F5B82E"/>
+    <text x="60" y="160" text-anchor="middle" font-size="14" font-weight="600" fill="#1F1F2E">Sun</text>
+    <text x="60" y="180" text-anchor="middle" font-size="12" fill="#5C6378">#F5B82E</text>
+
+    <!-- Cobalt -->
+    <rect x="135" y="20" width="120" height="120" rx="14" fill="#1E3A8A"/>
+    <text x="195" y="160" text-anchor="middle" font-size="14" font-weight="600" fill="#1F1F2E">Cobalt</text>
+    <text x="195" y="180" text-anchor="middle" font-size="12" fill="#5C6378">#1E3A8A</text>
+
+    <!-- Starlight -->
+    <rect x="270" y="20" width="120" height="120" rx="14" fill="#3B5BDB"/>
+    <text x="330" y="160" text-anchor="middle" font-size="14" font-weight="600" fill="#1F1F2E">Starlight</text>
+    <text x="330" y="180" text-anchor="middle" font-size="12" fill="#5C6378">#3B5BDB</text>
+
+    <!-- Canvas -->
+    <rect x="405" y="20" width="120" height="120" rx="14" fill="#FAF6E8" stroke="#5C6378" stroke-width="1"/>
+    <text x="465" y="160" text-anchor="middle" font-size="14" font-weight="600" fill="#1F1F2E">Canvas</text>
+    <text x="465" y="180" text-anchor="middle" font-size="12" fill="#5C6378">#FAF6E8</text>
+
+    <!-- Ink -->
+    <rect x="540" y="20" width="120" height="120" rx="14" fill="#1F1F2E"/>
+    <text x="600" y="160" text-anchor="middle" font-size="14" font-weight="600" fill="#1F1F2E">Ink</text>
+    <text x="600" y="180" text-anchor="middle" font-size="12" fill="#5C6378">#1F1F2E</text>
+
+    <!-- Terracotta -->
+    <rect x="675" y="20" width="120" height="120" rx="14" fill="#C8553D"/>
+    <text x="735" y="160" text-anchor="middle" font-size="14" font-weight="600" fill="#1F1F2E">Terracotta</text>
+    <text x="735" y="180" text-anchor="middle" font-size="12" fill="#5C6378">#C8553D</text>
+
+    <!-- Olive -->
+    <rect x="810" y="20" width="120" height="120" rx="14" fill="#7A8C5C"/>
+    <text x="870" y="160" text-anchor="middle" font-size="14" font-weight="600" fill="#1F1F2E">Olive</text>
+    <text x="870" y="180" text-anchor="middle" font-size="12" fill="#5C6378">#7A8C5C</text>
+  </g>
+
+  <!-- ===== LOGO CONCEPT 1: Sunflower Wheel ===== -->
+  <g transform="translate(80, 380)">
+    <text x="0" y="0" font-size="22" font-weight="600" fill="#1F1F2E">Concept 1 — Sunflower Wheel</text>
+    <text x="0" y="25" font-size="14" fill="#5C6378">Van silhouette where the front wheel is a stylized sunflower. Iconic, scannable as an app icon.</text>
+
+    <!-- Logo mark -->
+    <g transform="translate(40, 60)">
+      <!-- van body -->
+      <path d="M 30 130 L 30 80 Q 30 60 50 60 L 110 60 L 130 30 L 220 30 Q 240 30 240 50 L 240 130 Z"
+            fill="#1E3A8A" stroke="#1F1F2E" stroke-width="3" stroke-linejoin="round"/>
+      <!-- window -->
+      <rect x="135" y="42" width="80" height="36" rx="4" fill="#FAF6E8" stroke="#1F1F2E" stroke-width="2"/>
+      <!-- back wheel (regular) -->
+      <circle cx="200" cy="135" r="22" fill="#1F1F2E"/>
+      <circle cx="200" cy="135" r="10" fill="#5C6378"/>
+      <!-- front wheel = SUNFLOWER -->
+      <g transform="translate(70, 135)">
+        <!-- petals: 12 around -->
+        <g fill="#F5B82E" stroke="#1F1F2E" stroke-width="1.5">
+          <ellipse cx="0" cy="-26" rx="6" ry="14"/>
+          <ellipse cx="13" cy="-22.5" rx="6" ry="14" transform="rotate(30 13 -22.5)"/>
+          <ellipse cx="22.5" cy="-13" rx="6" ry="14" transform="rotate(60 22.5 -13)"/>
+          <ellipse cx="26" cy="0" rx="6" ry="14" transform="rotate(90 26 0)"/>
+          <ellipse cx="22.5" cy="13" rx="6" ry="14" transform="rotate(120 22.5 13)"/>
+          <ellipse cx="13" cy="22.5" rx="6" ry="14" transform="rotate(150 13 22.5)"/>
+          <ellipse cx="0" cy="26" rx="6" ry="14"/>
+          <ellipse cx="-13" cy="22.5" rx="6" ry="14" transform="rotate(30 -13 22.5)"/>
+          <ellipse cx="-22.5" cy="13" rx="6" ry="14" transform="rotate(60 -22.5 13)"/>
+          <ellipse cx="-26" cy="0" rx="6" ry="14" transform="rotate(90 -26 0)"/>
+          <ellipse cx="-22.5" cy="-13" rx="6" ry="14" transform="rotate(120 -22.5 -13)"/>
+          <ellipse cx="-13" cy="-22.5" rx="6" ry="14" transform="rotate(150 -13 -22.5)"/>
+        </g>
+        <!-- center -->
+        <circle r="14" fill="#C8553D" stroke="#1F1F2E" stroke-width="2"/>
+        <circle r="7" fill="#1F1F2E"/>
+      </g>
+      <!-- subtle steam from roof -->
+      <path d="M 140 28 Q 145 18 150 26 Q 155 14 162 24" fill="none" stroke="#5C6378" stroke-width="2.5" stroke-linecap="round"/>
+    </g>
+
+    <!-- Wordmark companion -->
+    <g transform="translate(380, 110)">
+      <text x="0" y="60" font-size="80" font-weight="800" fill="#1E3A8A" letter-spacing="-2">Van</text>
+      <text x="160" y="60" font-size="80" font-weight="800" fill="#F5B82E" letter-spacing="-2">Go</text>
+    </g>
+  </g>
+
+  <!-- ===== LOGO CONCEPT 2: Brushstroke Van ===== -->
+  <g transform="translate(80, 670)">
+    <text x="0" y="0" font-size="22" font-weight="600" fill="#1F1F2E">Concept 2 — Brushstroke Van</text>
+    <text x="0" y="25" font-size="14" fill="#5C6378">A single confident sweep traces the van. Painterly. Reads at any size. Most "Van Gogh."</text>
+
+    <g transform="translate(40, 60)">
+      <!-- ground brushstroke -->
+      <path d="M 10 150 Q 130 142 250 156" fill="none" stroke="#1E3A8A" stroke-width="6" stroke-linecap="round" opacity="0.8"/>
+      <!-- van body — single thick brushstroke -->
+      <path d="M 30 130 Q 30 65 95 65 L 130 30 Q 145 25 165 30 L 220 30 Q 245 30 245 65 L 245 130"
+            fill="none" stroke="#1F1F2E" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"/>
+      <!-- yellow body fill (under stroke) -->
+      <path d="M 35 125 Q 35 70 100 70 L 135 35 Q 150 32 165 35 L 220 35 Q 240 35 240 70 L 240 125 Z"
+            fill="#F5B82E"/>
+      <!-- re-stroke on top so outline reads -->
+      <path d="M 30 130 Q 30 65 95 65 L 130 30 Q 145 25 165 30 L 220 30 Q 245 30 245 65 L 245 130"
+            fill="none" stroke="#1F1F2E" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+      <!-- window swirl (Starry Night reference) -->
+      <path d="M 145 55 Q 165 40 185 55 Q 205 70 185 85 Q 165 95 145 85 Q 130 70 145 55 Z"
+            fill="#1E3A8A" stroke="#1F1F2E" stroke-width="3"/>
+      <path d="M 152 70 Q 165 60 178 70 Q 175 78 165 78 Q 156 78 152 70" fill="#3B5BDB"/>
+      <!-- wheels: bold dabs -->
+      <circle cx="80" cy="135" r="18" fill="#1F1F2E"/>
+      <circle cx="200" cy="135" r="18" fill="#1F1F2E"/>
+      <!-- motion lines / brushstroke trail -->
+      <path d="M -10 80 L 22 80" stroke="#C8553D" stroke-width="5" stroke-linecap="round"/>
+      <path d="M -20 100 L 18 100" stroke="#C8553D" stroke-width="5" stroke-linecap="round"/>
+      <path d="M -8 60 L 25 60" stroke="#C8553D" stroke-width="5" stroke-linecap="round" opacity="0.6"/>
+    </g>
+
+    <g transform="translate(380, 110)">
+      <text x="0" y="60" font-size="80" font-weight="800" fill="#1F1F2E" letter-spacing="-2">VanGo</text>
+    </g>
+  </g>
+
+  <!-- ===== LOGO CONCEPT 3: Wordmark with Starry "O" ===== -->
+  <g transform="translate(80, 960)">
+    <text x="0" y="0" font-size="22" font-weight="600" fill="#1F1F2E">Concept 3 — Wordmark with Starry "O"</text>
+    <text x="0" y="25" font-size="14" fill="#5C6378">Most modern. Wordmark-first. The "o" in "Go" becomes a swirling Starry Night sun. Best for nav bars.</text>
+
+    <g transform="translate(40, 80)">
+      <text x="0" y="100" font-size="140" font-weight="900" fill="#1E3A8A" letter-spacing="-6">VanG</text>
+      <!-- Custom "O" = swirling sun -->
+      <g transform="translate(345, 70)">
+        <!-- outer ring -->
+        <circle cx="40" cy="40" r="50" fill="#F5B82E" stroke="#1F1F2E" stroke-width="4"/>
+        <!-- spiral (Starry Night swirl) -->
+        <path d="M 40 40 m -30 0
+                 a 30 30 0 1 1 60 0
+                 a 22 22 0 1 0 -44 0
+                 a 14 14 0 1 1 28 0
+                 a 7 7 0 1 0 -14 0"
+              fill="none" stroke="#1E3A8A" stroke-width="5" stroke-linecap="round"/>
+      </g>
+    </g>
+
+    <!-- App icon mock-ups using Concept 3 -->
+    <g transform="translate(0, 220)">
+      <text x="0" y="0" font-size="14" font-weight="600" fill="#5C6378">App icon variants</text>
+      <!-- Light icon -->
+      <rect x="0" y="15" width="100" height="100" rx="22" fill="#FAF6E8" stroke="#1F1F2E" stroke-width="1"/>
+      <text x="14" y="80" font-size="48" font-weight="900" fill="#1E3A8A" letter-spacing="-2">V</text>
+      <g transform="translate(48, 38)">
+        <circle cx="20" cy="20" r="22" fill="#F5B82E" stroke="#1F1F2E" stroke-width="2"/>
+        <path d="M 20 20 m -14 0 a 14 14 0 1 1 28 0 a 9 9 0 1 0 -18 0 a 5 5 0 1 1 10 0"
+              fill="none" stroke="#1E3A8A" stroke-width="2.5" stroke-linecap="round"/>
+      </g>
+
+      <!-- Cobalt icon -->
+      <rect x="120" y="15" width="100" height="100" rx="22" fill="#1E3A8A"/>
+      <text x="134" y="80" font-size="48" font-weight="900" fill="#F5B82E" letter-spacing="-2">V</text>
+      <g transform="translate(168, 38)">
+        <circle cx="20" cy="20" r="22" fill="#F5B82E" stroke="#FAF6E8" stroke-width="2"/>
+        <path d="M 20 20 m -14 0 a 14 14 0 1 1 28 0 a 9 9 0 1 0 -18 0 a 5 5 0 1 1 10 0"
+              fill="none" stroke="#1E3A8A" stroke-width="2.5" stroke-linecap="round"/>
+      </g>
+
+      <!-- Sun icon -->
+      <rect x="240" y="15" width="100" height="100" rx="22" fill="#F5B82E"/>
+      <text x="254" y="80" font-size="48" font-weight="900" fill="#1E3A8A" letter-spacing="-2">V</text>
+      <g transform="translate(288, 38)">
+        <circle cx="20" cy="20" r="22" fill="#FAF6E8" stroke="#1E3A8A" stroke-width="2"/>
+        <path d="M 20 20 m -14 0 a 14 14 0 1 1 28 0 a 9 9 0 1 0 -18 0 a 5 5 0 1 1 10 0"
+              fill="none" stroke="#1E3A8A" stroke-width="2.5" stroke-linecap="round"/>
+      </g>
+    </g>
+  </g>
+
+  <!-- ===== UI MOCK ===== -->
+  <g transform="translate(80, 1330)">
+    <text x="0" y="0" font-size="22" font-weight="600" fill="#1F1F2E">Quick UI flavor (palette in context)</text>
+
+    <!-- mock card -->
+    <rect x="0" y="20" width="940" height="130" rx="18" fill="#FFFFFF" stroke="#1F1F2E" stroke-width="1" opacity="0.95"/>
+    <rect x="20" y="40" width="90" height="90" rx="12" fill="#1E3A8A"/>
+    <text x="65" y="92" text-anchor="middle" font-size="36">🌮</text>
+
+    <text x="130" y="65" font-size="22" font-weight="700" fill="#1F1F2E">Mama's Tacos</text>
+    <text x="130" y="90" font-size="14" fill="#5C6378">Mexican · 0.4 mi · ⭐ 4.8</text>
+
+    <!-- Open Now badge -->
+    <rect x="130" y="105" width="92" height="26" rx="13" fill="#7A8C5C"/>
+    <text x="176" y="123" text-anchor="middle" font-size="13" font-weight="700" fill="#FAF6E8">Open Now</text>
+
+    <!-- 25% off badge -->
+    <rect x="232" y="105" width="100" height="26" rx="13" fill="#C8553D"/>
+    <text x="282" y="123" text-anchor="middle" font-size="13" font-weight="700" fill="#FAF6E8">25% off · 1h</text>
+
+    <!-- CTA button -->
+    <rect x="780" y="50" width="140" height="44" rx="22" fill="#F5B82E" stroke="#1F1F2E" stroke-width="1.5"/>
+    <text x="850" y="78" text-anchor="middle" font-size="15" font-weight="700" fill="#1F1F2E">View menu</text>
+
+    <!-- Favorite outline -->
+    <rect x="780" y="100" width="140" height="36" rx="18" fill="none" stroke="#1E3A8A" stroke-width="1.5"/>
+    <text x="850" y="123" text-anchor="middle" font-size="13" font-weight="600" fill="#1E3A8A">♡ Favorite</text>
+  </g>
+</svg>

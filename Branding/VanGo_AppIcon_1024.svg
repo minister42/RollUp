@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <!--
+    VanGo App Icon — Concept 3 ("Wordmark with Starry O")
+    1024×1024 master. iOS downsamples to all required sizes.
+    No transparency / no rounded corners — Apple applies the icon mask itself.
+  -->
+  <defs>
+    <linearGradient id="cobaltDepth" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1E3A8A"/>
+      <stop offset="100%" stop-color="#16285C"/>
+    </linearGradient>
+    <radialGradient id="sunGlow" cx="0.5" cy="0.45" r="0.55">
+      <stop offset="0%" stop-color="#FCD34D"/>
+      <stop offset="60%" stop-color="#F5B82E"/>
+      <stop offset="100%" stop-color="#D49520"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Background: cobalt gradient -->
+  <rect width="1024" height="1024" fill="url(#cobaltDepth)"/>
+
+  <!-- Subtle starry-night texture: small stars/dabs -->
+  <g fill="#3B5BDB" opacity="0.45">
+    <circle cx="120"  cy="180" r="6"/>
+    <circle cx="220"  cy="100" r="4"/>
+    <circle cx="900"  cy="160" r="7"/>
+    <circle cx="820"  cy="240" r="3"/>
+    <circle cx="160"  cy="860" r="5"/>
+    <circle cx="900"  cy="880" r="6"/>
+    <circle cx="80"   cy="540" r="4"/>
+    <circle cx="960"  cy="540" r="4"/>
+    <circle cx="290"  cy="800" r="3"/>
+    <circle cx="730"  cy="820" r="5"/>
+  </g>
+  <g fill="#FAF6E8" opacity="0.35">
+    <circle cx="200"  cy="220" r="3"/>
+    <circle cx="850"  cy="200" r="3"/>
+    <circle cx="100"  cy="780" r="3"/>
+    <circle cx="940"  cy="800" r="3"/>
+  </g>
+
+  <!-- "V" letter — sunflower yellow, hand-painted thick stroke feel -->
+  <!-- V center anchor: x=300, baseline=680, height=400 -->
+  <g>
+    <path d="M 200 290
+             L 320 290
+             L 410 590
+             L 500 290
+             L 620 290
+             L 480 720
+             L 340 720 Z"
+          fill="#F5B82E"
+          stroke="#FAF6E8"
+          stroke-width="10"
+          stroke-linejoin="round"/>
+  </g>
+
+  <!-- "G" — slightly inset, cobalt-on-sun feel via stroke; using thick canvas-coloured glyph for readability -->
+  <!-- G centered around x=780, baseline=680 -->
+  <!-- Designed as a heavy geometric G -->
+  <path d="M 720 290
+           A 140 215 0 1 0 720 720
+           L 870 720
+           L 870 540
+           L 770 540
+           L 770 600
+           L 810 600
+           L 810 660
+           L 770 660
+           A 70 145 0 1 1 770 350
+           L 870 350
+           L 870 290 Z"
+        fill="#FAF6E8"
+        stroke="none"/>
+
+  <!-- The starry "O" sun ornament centred above/within the wordmark space.
+       Placed at top-center as a brand mark accent. Replaces a literal "o" since
+       "VanGo" has only one o (at the end of "Go"). Here we elevate it as the
+       hero element. -->
+  <g transform="translate(512, 850)">
+    <!-- Outer halo ring -->
+    <circle r="125" fill="none" stroke="#F5B82E" stroke-width="6" opacity="0.4"/>
+    <!-- Sun disc -->
+    <circle r="105" fill="url(#sunGlow)" stroke="#FAF6E8" stroke-width="6"/>
+    <!-- Starry-night spiral (centripetal, multi-turn) -->
+    <path d="M 0 0
+             m -65 0
+             a 65 65 0 1 1 130 0
+             a 50 50 0 1 0 -100 0
+             a 36 36 0 1 1 72 0
+             a 22 22 0 1 0 -44 0
+             a 12 12 0 1 1 24 0"
+          fill="none"
+          stroke="#1E3A8A"
+          stroke-width="10"
+          stroke-linecap="round"
+          stroke-linejoin="round"/>
+    <!-- center dot -->
+    <circle r="6" fill="#1E3A8A"/>
+  </g>
+</svg>
