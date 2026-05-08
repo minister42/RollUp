@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="500" viewBox="0 0 800 500">
+  <!--
+    VanGo — Concept 2: Brushstroke Van (illustrative secondary mark)
+    Used for marketing pages, About screen, splash, hero areas — anywhere
+    there's room for a more painterly statement than the app icon allows.
+  -->
+
+  <!-- Canvas background -->
+  <rect width="800" height="500" fill="#FAF6E8"/>
+
+  <!-- Ground brushstroke -->
+  <path d="M 80 410 Q 350 395 720 425"
+        fill="none" stroke="#1E3A8A" stroke-width="14" stroke-linecap="round" opacity="0.7"/>
+  <path d="M 110 425 Q 350 420 700 440"
+        fill="none" stroke="#3B5BDB" stroke-width="6" stroke-linecap="round" opacity="0.5"/>
+
+  <!-- Motion lines / trailing brushstrokes (left of van) -->
+  <path d="M 30 200 L 110 200" stroke="#C8553D" stroke-width="14" stroke-linecap="round"/>
+  <path d="M 10 250 L 95  250" stroke="#C8553D" stroke-width="14" stroke-linecap="round"/>
+  <path d="M 40 300 L 110 300" stroke="#C8553D" stroke-width="14" stroke-linecap="round" opacity="0.7"/>
+  <path d="M 20 150 L 80  150" stroke="#F5B82E" stroke-width="10" stroke-linecap="round" opacity="0.7"/>
+
+  <!-- Van body — yellow fill -->
+  <path d="M 130 350
+           Q 130 175 240 175
+           L 320 105
+           Q 345 95 380 100
+           L 540 100
+           Q 605 100 605 175
+           L 605 350 Z"
+        fill="#F5B82E"/>
+
+  <!-- Van body outline — confident black brushstroke -->
+  <path d="M 130 350
+           Q 130 175 240 175
+           L 320 105
+           Q 345 95 380 100
+           L 540 100
+           Q 605 100 605 175
+           L 605 350"
+        fill="none" stroke="#1F1F2E" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- Window — Starry Night swirl -->
+  <g>
+    <rect x="345" y="135" width="225" height="105" rx="14"
+          fill="#1E3A8A" stroke="#1F1F2E" stroke-width="10"/>
+    <!-- swirl inside window -->
+    <path d="M 460 188
+             m -50 0
+             a 50 50 0 1 1 100 0
+             a 36 36 0 1 0 -72 0
+             a 22 22 0 1 1 44 0"
+          fill="none" stroke="#F5B82E" stroke-width="8" stroke-linecap="round"/>
+    <circle cx="460" cy="188" r="6" fill="#F5B82E"/>
+  </g>
+
+  <!-- Side window (driver) -->
+  <path d="M 245 175 L 320 110 L 320 175 Z" fill="#3B5BDB" stroke="#1F1F2E" stroke-width="8" stroke-linejoin="round"/>
+
+  <!-- Headlight -->
+  <circle cx="155" cy="270" r="14" fill="#FAF6E8" stroke="#1F1F2E" stroke-width="6"/>
+
+  <!-- Wheels — bold black dabs with yellow centers -->
+  <circle cx="225" cy="365" r="38" fill="#1F1F2E"/>
+  <circle cx="225" cy="365" r="14" fill="#F5B82E"/>
+  <circle cx="510" cy="365" r="38" fill="#1F1F2E"/>
+  <circle cx="510" cy="365" r="14" fill="#F5B82E"/>
+
+  <!-- Tiny sunflower on the side panel as Easter egg / brand signature -->
+  <g transform="translate(180, 290)">
+    <g fill="#C8553D" opacity="0.9">
+      <ellipse rx="3" ry="9" cy="-12"/>
+      <ellipse rx="3" ry="9" cx="11" cy="-6" transform="rotate(60 11 -6)"/>
+      <ellipse rx="3" ry="9" cx="11" cy="6"  transform="rotate(120 11 6)"/>
+      <ellipse rx="3" ry="9" cy="12"/>
+      <ellipse rx="3" ry="9" cx="-11" cy="6"  transform="rotate(60 -11 6)"/>
+      <ellipse rx="3" ry="9" cx="-11" cy="-6" transform="rotate(120 -11 -6)"/>
+    </g>
+    <circle r="6" fill="#1F1F2E"/>
+  </g>
+
+  <!-- Wordmark below -->
+  <g transform="translate(400, 470)">
+    <text text-anchor="middle" font-size="56" font-weight="900"
+          font-family="-apple-system, system-ui, Helvetica, sans-serif"
+          letter-spacing="-2" fill="#1F1F2E">VanGo</text>
+  </g>
+</svg>

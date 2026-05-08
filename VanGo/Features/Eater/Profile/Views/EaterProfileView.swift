@@ -43,6 +43,11 @@ struct EaterProfileView: View {
                 ProfileRow(icon: "questionmark.circle.fill", title: "Help & Support", color: .cyan) {}
                 ProfileRow(icon: "doc.text.fill", title: "Terms of Service", color: .gray) {}
                 ProfileRow(icon: "lock.shield.fill", title: "Privacy Policy", color: .gray) {}
+                NavigationLink {
+                    AboutView()
+                } label: {
+                    ProfileRowLabel(icon: "info.circle.fill", title: "About VanGo", color: .vangoCobalt, showChevron: false)
+                }
             }
 
             // Sign out
@@ -81,6 +86,40 @@ struct EaterProfileView: View {
     }
 }
 
+/// Visual content of a profile-list row. Extracted so it can be embedded
+/// inside a `Button` (legacy callsites) *or* a `NavigationLink` (e.g. the
+/// new About row) without duplicating the HStack styling.
+struct ProfileRowLabel: View {
+    let icon: String
+    let title: String
+    let color: Color
+    /// `Button` callsites render their own chevron; NavigationLink supplies
+    /// one automatically. Default to true for the legacy look.
+    var showChevron: Bool = true
+
+    var body: some View {
+        HStack(spacing: 12) {
+            Image(systemName: icon)
+                .font(.subheadline)
+                .foregroundStyle(color)
+                .frame(width: 28, height: 28)
+                .background(color.opacity(0.12), in: RoundedRectangle(cornerRadius: 7))
+
+            Text(title)
+                .font(.subheadline)
+                .foregroundStyle(.primary)
+
+            Spacer()
+
+            if showChevron {
+                Image(systemName: "chevron.right")
+                    .font(.caption)
+                    .foregroundStyle(.tertiary)
+            }
+        }
+    }
+}
+
 struct ProfileRow: View {
     let icon: String
     let title: String
@@ -89,23 +128,7 @@ struct ProfileRow: View {
 
     var body: some View {
         Button(action: action) {
-            HStack(spacing: 12) {
-                Image(systemName: icon)
-                    .font(.subheadline)
-                    .foregroundStyle(color)
-                    .frame(width: 28, height: 28)
-                    .background(color.opacity(0.12), in: RoundedRectangle(cornerRadius: 7))
-
-                Text(title)
-                    .font(.subheadline)
-                    .foregroundStyle(.primary)
-
-                Spacer()
-
-                Image(systemName: "chevron.right")
-                    .font(.caption)
-                    .foregroundStyle(.tertiary)
-            }
+            ProfileRowLabel(icon: icon, title: title, color: color)
         }
     }
 }

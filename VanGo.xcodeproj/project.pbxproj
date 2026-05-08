@@ -37,6 +37,8 @@
 		401ED86A620AB66AB9D85F30 /* TruckDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC758820178A878420C0CECC /* TruckDetailView.swift */; };
 		44331293851BFADA1CFFA70C /* EaterTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05AACF5D8EFF49470341B2AC /* EaterTabView.swift */; };
 		4888A618F8E9BEC78EA6F407 /* BadgeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28CF0A10448B71E1A8FC5DCB /* BadgeView.swift */; };
+		6DBC3C2ECFCA4651BC45697A /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80ECB1AA9F5143A3AAAAA5A5 /* AboutView.swift */; };
+		73610851CC014326800390BA /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AA948B4CBF5402ABBECC683 /* SplashView.swift */; };
 		4C2AACFE0CA4BB682C7487B2 /* CouponsSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D84ABF71A75BAE8712295D /* CouponsSectionView.swift */; };
 		51A76665C05031D5D53C8855 /* MenuSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37E98F54956BB7D9CA5D6EA4 /* MenuSectionView.swift */; };
 		5643EC2AACCB5DC922B78E10 /* Review.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA7B9FCA3D566187D08A9BF6 /* Review.swift */; };
@@ -108,6 +110,8 @@
 		1D8D9A7E2F780FCA00428737 /* BACKEND_CHECKLIST.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = BACKEND_CHECKLIST.md; sourceTree = "<group>"; };
 		1F4E782AEAA3538C712AD835 /* AdPackagesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdPackagesView.swift; sourceTree = "<group>"; };
 		28CF0A10448B71E1A8FC5DCB /* BadgeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgeView.swift; sourceTree = "<group>"; };
+		80ECB1AA9F5143A3AAAAA5A5 /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
+		1AA948B4CBF5402ABBECC683 /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
 		3557CB3C906F85B7250017DA /* SectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionHeader.swift; sourceTree = "<group>"; };
 		37306413301925573EAF3C11 /* TruckAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TruckAnnotationView.swift; sourceTree = "<group>"; };
 		37E98F54956BB7D9CA5D6EA4 /* MenuSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuSectionView.swift; sourceTree = "<group>"; };
@@ -472,6 +476,8 @@
 			isa = PBXGroup;
 			children = (
 				28CF0A10448B71E1A8FC5DCB /* BadgeView.swift */,
+				80ECB1AA9F5143A3AAAAA5A5 /* AboutView.swift */,
+				1AA948B4CBF5402ABBECC683 /* SplashView.swift */,
 				661CA9EFFAB3E6F28F6F8369 /* LoadingView.swift */,
 				E156058CC4DA348BB21DE043 /* RatingStarsView.swift */,
 				61653D2D7D8262E3439632C4 /* SearchBarView.swift */,
@@ -695,6 +701,8 @@
 				90C534F71221DE0C605C95C3 /* WriteReviewView.swift in Sources */,
 				E53955F97DED82DA28C06005 /* CardModifier.swift in Sources */,
 				4888A618F8E9BEC78EA6F407 /* BadgeView.swift in Sources */,
+				6DBC3C2ECFCA4651BC45697A /* AboutView.swift in Sources */,
+				73610851CC014326800390BA /* SplashView.swift in Sources */,
 				C3466DE4E26AEF792668A1EB /* LoadingView.swift in Sources */,
 				6BB887AD06568CCAC60F320A /* RatingStarsView.swift in Sources */,
 				1D8D9A672F780EB700428737 /* AuthService.swift in Sources */,

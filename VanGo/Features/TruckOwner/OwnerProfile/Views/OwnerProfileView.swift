@@ -44,6 +44,11 @@ struct OwnerProfileView: View {
                 ProfileRow(icon: "clock.fill", title: "Business Hours", color: .orange) {}
                 ProfileRow(icon: "questionmark.circle.fill", title: "Help & Support", color: .cyan) {}
                 ProfileRow(icon: "doc.text.fill", title: "Terms of Service", color: .gray) {}
+                NavigationLink {
+                    AboutView()
+                } label: {
+                    ProfileRowLabel(icon: "info.circle.fill", title: "About VanGo", color: .vangoCobalt, showChevron: false)
+                }
             }
 
             // Sign out
